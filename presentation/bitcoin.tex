@@ -1,0 +1,114 @@
+\documentclass{beamer}
+\usepackage{nameref}
+\usepackage{biblatex}
+\usepackage{textcomp}
+\usepackage{csquotes} %Imports biblatex package
+\usepackage{ifthen}
+\usepackage{babel}
+
+\useoutertheme{miniframes}
+%\setbeameroption{show notes}
+
+\makeatletter
+\newcommand*{\currentname}{\@currentlabelname}
+\makeatother
+
+\addbibresource{bitcoin.bib} %Import the bibliography file
+
+\newboolean{sectiontoc}
+\setboolean{sectiontoc}{true} % default true
+
+% section ohne beforesection toc
+\newcommand{\toclesssection}[1]{
+    \setboolean{sectiontoc}{false}
+    \section{#1}
+    \setboolean{sectiontoc}{true}
+}
+
+
+% Gliederungstiefe
+\setcounter{tocdepth}{1}
+
+%Information to be included in the title page:
+\title[Kryptowährungen]{Anonymität in Kryptowährungen}
+\subtitle{Einführung und praktische Ansätze}
+
+\author{Noah Lehmann}
+\institute{Hochschule für Angewandte Wissenschaften Hof}
+
+\date[06.12.2021]{Seminar IT-Sicherheit, 06.12.2021}
+
+\begin{document}
+
+    \frame{\titlepage}
+
+    \begin{frame}
+        \frametitle{Überblick}
+        \tableofcontents[hideallsubsections]
+    \end{frame}
+
+    \AtBeginSection[]
+    {
+        \ifthenelse{\boolean{sectiontoc}}{
+            \begin{frame}
+                \frametitle{Zwischenstand}
+                \tableofcontents[currentsection,hideothersubsections]
+            \end{frame}
+        }
+    }
+
+%==============================================================================
+% Einführung
+%==============================================================================
+
+
+    \toclesssection{Einführung}
+    \include{sections/einfuehrung}
+
+%==============================================================================
+% Geschichte
+%==============================================================================
+
+
+    \section{Geschichte}
+    \input{sections/geschichte}
+
+%==============================================================================
+% Kryptowährung
+%==============================================================================
+
+
+    \section{Kryptowährung}
+    \input{sections/kryptowaehrung.tex}
+
+%==============================================================================
+% Anonymität
+%==============================================================================
+
+
+    \section{Anonymität}
+    \input{sections/anonymitaet}
+
+%==============================================================================
+% Anwendung
+%==============================================================================
+
+
+    \section{Anwendung}
+    \input{sections/anwendung}
+
+%==============================================================================
+% Fazit
+%==============================================================================
+
+
+    \section{Fazit}
+    \input{sections/fazit}
+
+    \appendix
+
+    \begin{frame}[allowframebreaks]{Quellen}
+        \printbibliography
+    \end{frame}
+
+\end{document}
