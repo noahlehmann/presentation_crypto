@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[a4paper, left=3.5cm, right=3.5cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{xcolor,soul}
+\usepackage[parfill]{parskip}
+
+\newcommand{\hlc}[2][yellow]{{
+    \colorlet{foo}{#1}
+    \sethlcolor{foo}\hl{#2}}
+}
+
+\pagenumbering{gobble}
+
+\title{Bitcoin Open-Source Implementierung einer P2P Währung\footnote{Übersetzt aus dem Englischen}}
+\author{Satoshi Nakamoto}
+\date{11.02.2009, 22:27}
+\begin{document}
+    \maketitle
+    Ich habe ein neues Open-Source-P2P-E-Cash-System namens Bitcoin entwickelt.
+    Es ist vollständig dezentralisiert, ohne zentralen Server oder Parteien, denen vertraut werden muss,
+    da alles auf Kryptografischen Beweisen statt auf Vertrauen basiert.
+
+    [\ldots]
+
+    Das Hauptproblem bei konventionellen Währungen ist das ganze Vertrauen, das nötig ist, damit sie funktionieren.
+    Der Zentralbank muss vertraut werden, dass sie die Währung nicht entwertet, aber die Geschichte der
+    Fiat-Währungen ist voll von Verstößen gegen dieses Vertrauen.
+    Man muss den Banken vertrauen, dass sie unser Geld verwahren und elektronisch übertragen, aber sie verleihen es in
+    Wellen von Kreditblasen mit kaum einem Bruchteil an Reserven.
+    Wir müssen ihnen unsere Privatsphäre anvertrauen und darauf hoffen, dass sie unsere Konten nicht von
+    Betrügern leerräumen lassen.
+    Ihre massiven Betriebskosten machen Mikrotransaktionen unmöglich.
+
+    Vor einer Generation hatten Time-Sharing-Computersysteme für mehrere Benutzer ein ähn\-liches Problem.
+    Bevor es starke Verschlüsselung gab, mussten sich die Benutzer auf den Passwortschutz verlassen, um ihre Dateien zu
+    schützen, und darauf vertrauen, dass der Systemadministrator ihre Daten geheim hält.
+    Der Datenschutz konnte immer vom Administrator außer Kraft gesetzt werden, wenn er das Prinzip des Datenschutzes
+    gegen andere Belange abwog, oder auf Geheiß seiner Vorgesetzten.
+    Dann wurde starke Verschlüsselung für die breite Öffentlichkeit verfügbar, und Vertrauen war nicht mehr
+    erforderlich.
+    Daten konnten so gesichert werden, dass es für andere physisch unmöglich war, auf sie zuzugreifen,
+    egal aus welchem Grund, egal wie gut die Rechtfertigung war, egal was.
+
+    Es ist an der Zeit, dass wir das Gleiche auch für Geld nutzen.
+    Mit einer elektronischen Währung, die auf kryptografischen Beweisen basiert, ohne die Notwendigkeit, einem dritten
+    Mittelsmann zu vertrauen, kann Geld sicher und Transaktionen unkompliziert sein.
+
+    Einer der grundlegenden Bausteine für ein solches System sind digitale Signaturen.
+    Eine digitale Münze enthält den öffentlichen Schlüssel ihres Besitzers.
+    Um sie zu übertragen, signiert der Besitzer die Münze zusammen mit dem öffentlichen Schlüssel des nächsten
+    Besitzers.
+    Jeder kann die Signaturen überprüfen, um die Kette der Eigentümerschaft zu verifizieren.
+    Das funktioniert gut, um den Besitz zu sichern, lässt aber ein großes Problem ungelöst: Doppelausgaben.
+    Jeder Besitzer könnte versuchen, eine bereits ausgegebene Münze erneut auszugeben, indem er sie einem anderen
+    Besitzer erneut signiert.
+    Die übliche Lösung ist, dass ein vertrauenswürdiges Unternehmen mit einer zentralen Datenbank auf Doppelausgaben
+    prüft, aber das führt nur zurück zum Treuhandmodell.
+    In ihrer zentralen Position kann die Firma die Benutzer übergehen, und die Gebühren, die nötig sind, um die Firma zu
+    finanzieren, machen Micropayments unpraktisch.
+
+    Bitcoins Lösung ist die Verwendung eines Peer-to-Peer-Netzwerks zur Überprüfung auf Doppelausgaben.
+    Kurz gesagt, funktioniert das Netzwerk wie ein verteilter Zeitstempel-Server, der die erste Transaktion stempelt,
+    die eine Münze ausgibt.
+    Es macht sich die Tatsache zunutze, dass Informationen leicht zu verbreiten, aber schwer zu unterdrücken sind.
+    Details zur Funktionsweise finden Sie im Konzeptpapier unter http://www.bitcoin.org/bitcoin.pdf.
+
+    Das Ergebnis ist ein dezentrales System ohne einen einzigen Angriffspunkt für Fehler.
+    Die Benutzer besitzen die Krypto-Schlüssel für ihr eigenes Geld und führen direkt miteinander Transaktionen durch,
+    mit Hilfe des P2P-Netzwerks, um Doppelausgaben zu verhindern.
+
+    Satoshi Nakamoto
+\end{document}
