@@ -6,6 +6,7 @@
 \usepackage{ifthen}
 \usepackage{babel}
 
+\addbibresource{bitcoin.bib} %Import the bibliography file
 \useoutertheme{miniframes}
 %\setbeameroption{show notes}
 
@@ -13,18 +14,8 @@
 \newcommand*{\currentname}{\@currentlabelname}
 \makeatother
 
-\addbibresource{bitcoin.bib} %Import the bibliography file
-
 \newboolean{sectiontoc}
-\setboolean{sectiontoc}{true} % default true
-
-% section ohne beforesection toc
-\newcommand{\toclesssection}[1]{
-    \setboolean{sectiontoc}{false}
-    \section{#1}
-    \setboolean{sectiontoc}{true}
-}
-
+\setboolean{sectiontoc}{false} % default true
 
 % Gliederungstiefe
 \setcounter{tocdepth}{1}
@@ -32,10 +23,8 @@
 %Information to be included in the title page:
 \title[Kryptowährungen]{Anonymität in Kryptowährungen}
 \subtitle{Einführung und praktische Ansätze}
-
 \author{Noah Lehmann}
 \institute{Hochschule für Angewandte Wissenschaften Hof}
-
 \date[06.12.2021]{Seminar IT-Sicherheit, 06.12.2021}
 
 \begin{document}
@@ -44,7 +33,7 @@
 
     \begin{frame}
         \frametitle{Überblick}
-        \tableofcontents[hideallsubsections]
+        \tableofcontents
     \end{frame}
 
     \AtBeginSection[]
@@ -52,7 +41,7 @@
         \ifthenelse{\boolean{sectiontoc}}{
             \begin{frame}
                 \frametitle{Zwischenstand}
-                \tableofcontents[currentsection,hideothersubsections]
+                \tableofcontents[currentsection]
             \end{frame}
         }
     }
@@ -62,8 +51,8 @@
 %==============================================================================
 
 
-    \toclesssection{Einführung}
-    \include{sections/einfuehrung}
+    \section{Einführung}
+    \input{sections/einfuehrung}
 
 %==============================================================================
 % Geschichte
