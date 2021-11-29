@@ -5,6 +5,8 @@
 \usepackage{ifthen}
 \usepackage{babel}
 \usepackage{graphicx}
+\usepackage{ulem}
+
 
 \addbibresource{main.bib} %Import the bibliography file
 \graphicspath{ {./images/} }
@@ -13,6 +15,7 @@
 
 \makeatletter
 \newcommand*{\currentname}{\@currentlabelname}
+\newcommand{\translation}[4]{\textbf{#1} \textrightarrow{} \textit{#2} (#3) \textendash{} \glqq #4\grqq}
 \makeatother
 
 \newboolean{sectiontoc}
