@@ -19,7 +19,7 @@
 \makeatother
 
 \newboolean{sectiontoc}
-\setboolean{sectiontoc}{false} % default true
+\setboolean{sectiontoc}{true} % default true
 
 % Gliederungstiefe
 \setcounter{tocdepth}{1}
@@ -32,13 +32,6 @@
 \date[06.12.2021]{Seminar IT-Sicherheit, 06.12.2021}
 
 \begin{document}
-
-    \frame{\titlepage}
-
-    \begin{frame}
-        \frametitle{Überblick}
-        \tableofcontents
-    \end{frame}
 
     \AtBeginSection[]
     {
@@ -54,9 +47,10 @@
 % Einführung
 %==============================================================================
 
-
+    \setboolean{sectiontoc}{false}
     \section{Einführung}
     \input{sections/einfuehrung}
+    \setboolean{sectiontoc}{true}
 
 %==============================================================================
 % Geschichte
@@ -73,14 +67,6 @@
 
     \section{Kryptowährung}
     \input{sections/kryptowaehrung.tex}
-
-%==============================================================================
-% Anonymität
-%==============================================================================
-
-
-    \section{Anonymität}
-    \input{sections/anonymitaet}
 
 %==============================================================================
 % Anwendung
