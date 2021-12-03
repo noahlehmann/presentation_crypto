@@ -66,13 +66,13 @@
         \blue{3.} & \sout{Kein Vertrauen}       & \sol{Lotterie}                         \\ [.5ex]
         \blue{4.} & Inflationssicherheit & \\ [.5ex]
         \blue{5.} & Synchronisation      & \\ [.5ex]
-        \blue{6.} & Sicherheit   & \\ [.5ex]
+        \blue{6.} & Sicherheit           & \\ [.5ex]
     \end{tabular}
 \end{frame}
 
 \begin{frame}{\currentname}{Währungsstabilität Teil I}
     \begin{itemize}
-        \item Coinbase Transaktion für Schreiben eines gültigen Blocks
+        \item Coinbase Transaktion für das Finden eines korrekten Hashes
     \end{itemize}
 \end{frame}
 
@@ -130,6 +130,15 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}{\currentname}{Transaktionspool}
+    Was passiert mit den verworfenen Transaktionen?
+    \begin{itemize}
+        \item Broadcasting der Transaktionen
+        \item Ungeschriebene Transaktionen werden in Transaktionspool gehalten
+        \item Verworfene Transaktionen werden in Transaktionspool zurückgeschrieben
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{\currentname}{Blick auf Ziele}
     \begin{tabular}{lll}
         \blue{1.} & \sout{Dezentralisierung}    & \sol{Verteilung des Ledgers}           \\ [.5ex]
@@ -138,7 +147,6 @@
         \blue{4.} & \sout{Inflationssicherheit} & \sol{TX-Gebühr, Coinbase und Halving}  \\ [.5ex]
         \blue{5.} & \sout{Synchronisation}      & \sol{Blockchain}                       \\ [.5ex]
         \blue{6.} & \sout{Sicherheit}           & \sol{Nagamoto Konsens}                 \\ [.5ex]
-    \end{tabular}\pause
-    \textcolor{gray}{Weitere mögliche Schwachstellen klären wir zum Schluss.}
+    \end{tabular}
 \end{frame}
 

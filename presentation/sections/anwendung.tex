@@ -1,25 +1,77 @@
 \begin{frame}{\currentname}{Gründe zur Nutzung}
-    \includegraphics[width=0.7\textwidth]{tmp/1}
+    \begin{itemize}
+        \item Unabhängigkeit von zentralen Instanzen
+        \item Kryptografisch abgesichert
+        \item Privatsphäre
+        \item Wertstabilität
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{\currentname}{Wallets Teil I}
-    \includegraphics[width=0.7\textwidth]{tmp/2}
+    \textbf{Anlegen eines Kontos}\\
+    Primäres Ziel: Entfernen der Identifizierbarkeit aus Finanzen
+    Problem: Registrierung eines Kontos ohne zentrale Bank
 \end{frame}
 
 \begin{frame}{\currentname}{Wallets Teil II}
-    \includegraphics[width=0.7\textwidth]{tmp/3}
-\end{frame}
-
-\begin{frame}{\currentname}{Transaktionen}
-    \includegraphics[width=0.7\textwidth]{tmp/4}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\textwidth]{keygeneration}
+        \caption{Erstellung eines Key-Pairs}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{\currentname}{Wallets Teil III}
-    \includegraphics[width=0.7\textwidth]{tmp/5}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{adresse}
+        \caption{Erstellung einer Adresse}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{\currentname}{Transaktionen}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{transaction}
+        \caption{Transaktionsablauf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{\currentname}{Wallets Teil IV}
+    \begin{itemize}
+        \item Wie sehen konkrete Implementierungen davon aus?
+    \end{itemize}
+    \begin{table}[]
+        \begin{tabular}{@{}llll@{}}
+            \toprule
+            \multicolumn{2}{c}{\textbf{Hot Wallets}} & \multicolumn{2}{c}{\textbf{Cold Wallets}} \\ \midrule
+            \multicolumn{2}{c}{Web-Anwendung} & \multicolumn{2}{c}{Hardware} \\
+            \multicolumn{2}{c}{App-Anwendung} & \multicolumn{2}{c}{Digital} \\
+            \multicolumn{2}{c}{Desktop-Anwendung} & \multicolumn{2}{c}{Papier} \\ \midrule
+            \multicolumn{1}{c}{\textcolor{green}{\textbf{+}}} &
+            \begin{tabular}[c]{@{}l@{}}
+                einfach\\ kostenfrei
+            \end{tabular} &
+            \multicolumn{1}{c}{\textcolor{green}{\textbf{+}}} &
+            sehr sicher \\
+            \multicolumn{1}{c}{\textcolor{red}{\textbf{--}}} & unsicher &
+            \multicolumn{1}{c}{\textcolor{red}{\textbf{--}}} &
+            \begin{tabular}[c]{@{}l@{}}
+                teuer\\ schwerer Einstieg
+            \end{tabular} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
 \end{frame}
 
 \begin{frame}{\currentname}{Konkrete Kryptowährungen}
-    Grafik zu bitcoin, altcoin und beispiele\\
-    Websites um legitimität zu prüfen
-    Queen of crypto
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{waehrungen}
+        \caption{Kryptowährungen}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{\currentname}{Angriffe}
+    Kann Krypto noch sicher/anonym sein bei all den Angriffen?
 \end{frame}
