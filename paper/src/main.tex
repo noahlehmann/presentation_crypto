@@ -1,0 +1,58 @@
+\documentclass[sigconf]{acmart}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[main=ngerman, english]{babel}
+
+\AtBeginDocument{
+    \providecommand\BibTeX{{
+        \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+\acmYear{2021}
+\acmConference[Aktuelle Themen der IT-Sicherheit WS21/22]{Hochschule für Angewandte Wissenschaften Hof, 06.12.2021}{06.12.2021}{Hof, Deutschland}
+
+\begin{document}
+    \title{Kryptowährungen}
+    \subtitle{Einführung und praktische Ansätze}
+    \author{Noah Lehmann}
+    \email{noah.lehmann@hof-university.de}
+    \affiliation{
+        \institution{Hochschule für Angewandte Wissenschaften}
+        \streetaddress{Alfons-Goppel-Platz 1}
+        \city{Hof}
+        \country{Deutschland}
+        \postcode{95028}
+    }
+
+    \begin{abstract}
+        In einer Zeit, in der das Finanzsystem wiederholt stark inflationäre Tendenzen entwickelt und das Konzept
+        \textit{Web3} immer mehr an Bedeutung gewinnt, bedarf es einer neuen Technologie, die durch die Ideen des
+        \textit{Web3} die Probleme des Finanzsystems zu lösen versucht.
+        Hierfür entwickelte die nach wie vor anonyme Entität Satoshi Nakamoto 2008 erstmal ein funktionierendes Konzept
+        für eine Kryptowährung namens \textit{Bitcoin}.
+        \textit{Bitcoin} dezentralisiert sein Transaktionssystem und eliminiert somit alle Mittelmänner.
+        Dadurch entsteht ein über die sogenannte \textit{Blockchain} abgesichertes Peer-to-Peer-Bargeld.
+    \end{abstract}
+
+    \keywords{Kryptowährungen, Bitcoin, Blockchain, Konsens-Protokoll, Dezentralität}
+
+    \maketitle
+
+    \section{Einführung}
+    \input{sections/einfuehrung}
+
+    \section{Bekannte Finanzsysteme}
+
+    \section{Kryptowährungen}
+
+    \section{Wallets und Transaktionen}
+
+    \section{Fazit}
+
+
+    \bibliographystyle{ACM-Reference-Format}
+    \bibliography{../src/main}
+
+    \appendix
+
+
+\end{document}
