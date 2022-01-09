@@ -1,0 +1,36 @@
+Im vergangenen Kapitel wurden einige Probleme von vergangenen Währungen und den aktuellen Fiat-Währungen erläutert,
+darunter die Instabilität des Wertes, Manipulierbarkeit und die Zentralität der Fehlerquellen.
+Kryptowährungen versuchen diese Probleme zu eliminieren, erste Ansätze hierfür wurden ebenfalls im vorigen Kapitel
+gezeigt.\\
+Um zu verstehen, wie Kryptowährungen funktionieren, wird im folgenden Kapitel auf die Ziele von Kryptowährungen
+eingegangen und auf die Ansätze, wie man diese Ziele erreichen kann.
+Folgende Ziele werden betrachtet:
+\begin{itemize}
+    \item Dezentralisierung
+    \item Verteilter Konsens
+    \item Kein Vertrauen
+    \item Inflationssicherheit
+    \item Synchronisation
+    \item Stabilität
+\end{itemize}
+Um diese Ziele und deren Lösungen erklären zu können, wird im folgenden Kapitel eine Währung aufgebaut, die sich stark
+an der Implementierung von Bitcoin~\cite{bitcoin_whitepaper} orientiert.
+
+\subsection{Dezentralisierung}
+
+Wie im Kapitel~\nameref{subsec:fiat} bereits erläutert wurde, bieten zentralisierte Finanzsysteme einige
+Manipulationsmöglichkeiten, sowohl durch Angriffe als auch durch Einflussnahme Dritter.
+Beim Aufbau einer neuen Währung muss man somit als erstes die Dezentralität garantieren.\\
+
+Um eine Währung betreiben zu können, benötigt man ein sogenanntes Hauptbuch - im Folgenden als \textit{Ledger}
+bezeichnet.
+Dieses hält alle Informationen zu aktuellen Kontoständen und vergangenen Transaktionen.
+Somit lassen sich alle Änderungen nachvollziehen.
+Abbildung~\ref{fig:zentral} zeigt eine mögliche Form eines Ledgers.
+
+\begin{figure}
+           \centering
+           \includegraphics[width=0.3\textwidth]{zentral}
+           \caption{Zentrales Ledger}
+           \label{fig:zentral}
+\end{figure}
