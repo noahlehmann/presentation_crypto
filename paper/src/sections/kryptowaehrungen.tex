@@ -21,7 +21,6 @@ an der Implementierung von Bitcoin~\cite{bitcoin_whitepaper} orientiert.
 Wie im Kapitel~\nameref{subsec:fiat} bereits erläutert wurde, bieten zentralisierte Finanzsysteme einige
 Manipulationsmöglichkeiten, sowohl durch Angriffe als auch durch Einflussnahme Dritter.
 Beim Aufbau einer neuen Währung muss man somit als erstes die Dezentralität garantieren.\\
-
 Um eine Währung betreiben zu können, benötigt man ein sogenanntes Hauptbuch - im Folgenden als \textit{Ledger}
 bezeichnet.
 Dieses hält alle Informationen zu aktuellen Kontoständen und vergangenen Transaktionen.
@@ -34,3 +33,124 @@ Abbildung~\ref{fig:zentral} zeigt eine mögliche Form eines Ledgers.
            \caption{Zentrales Ledger}
            \label{fig:zentral}
 \end{figure}
+
+Hält man dieses Ledger nun nur zentral, ergeben sich alle Nachteile einer konventionellen Währung.
+Somit muss das Ledger an alle Beteiligten verteilt werden.
+Jede Änderung wird an alle Teilnehmer der Währung bekannt gegeben und von allen geprüft.
+Somit lässt sich das Netzwerk wie in Abbildung~\nameref{fig:dezentral} beschreiben.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{dezentral}
+    \caption{Verteiltes Ledger}
+    \label{fig:dezentral}
+\end{figure}
+
+Durch die Verteilung des Ledgers wurden nun die Grundlagen einer dezentralen Währung bereitgestellt.
+
+\subsection{Verteilter Konsens}
+\label{subsec:verteilung}
+
+Die Verteilung des Ledgers funktioniert bei einem kleinen Netzwerk sehr gut. 
+Sobald man aber skaliert und ein beliebig großes Netzwerk aufbaut, wird die Kommunikation immer ineffizienter und es
+bieten sich klare Angriffs- und Manipulationsmöglichkeiten. 
+Einige Teilnehmer des Netzwerkes könnten so gefälschte Ausgaben in das Ledger schreiben und dieses an neue Teilnehmer 
+kommunizieren. 
+Eine naive Lösung dessen ist das Prüfen und Schreiben durch einen vertrauenswürdigen Teilnehmer, wie in Abbildung
+~\nameref{fig:schreiber} gezeigt.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{schreiber}
+    \caption{Vertrauenswürdiger Schreiber}
+    \label{fig:schreiber}
+\end{figure}
+
+Dieser vertrauenswürdige Schreiber prüft nun alle Änderungen, die an ihn kommuniziert werden, schreibt diese 
+gegebenenfalls in das Ledger und kommuniziert dies an alle anderen Teilnehmer, die nur Änderungen des Schreibers annehmen.
+Dies bedarf ein grundlegendes Vertrauen in den Schreiber, bietet aber wiederum neue Angriffsmöglichkeiten.
+Der Schreiber könnte entweder manipuliert, bedroht oder durch Dritte ersetzt werden, ohne dass die restlichen Teilnehmer
+im Netzwerk etwas bemerken. 
+In Kapitel~\nameref{subsec:keinvertrauen} wird gezeigt, wie man einen einen vertrauenswürdigen Schreiber in einem dezentralen
+System festlegen kann, ohne ihn angreifbar zu machen.
+
+\subsection{Kein Vertrauen}
+\label{subsec:keinvertrauen}
+
+Wie bereits beschrieben bietet ein einziger vertrauenswürdiger Schreiber eine Schwachstelle in einer neuen Währung. 
+Da das große Ziel einer Kryptowährung die Gleichberechtigung aller Teilnehmer ist, muss man den Vertrauensaspekt beim
+Schreiben in das Ledger entfernen. 
+Der Gleichberechtigung geschuldet müssen alle Teilnehmer im Netzwerk der Währung schreiben können.
+Hierfür kann man eine Lotterie erstellen, welche das Schreibrecht vergibt ud an der grundsätzlich alle Teilnehmer des 
+Netzwerks teilnehmen können.
+Diese Lotterie muss mindestens folgende Bedingungen erfüllen:
+\begin{itemize}
+    \item \textbf{Zufälligkeit der Schreibberechtigung}
+    Gegenstand der Verlosung ist die Schreibberechtigung, welche vollkommen unvorhersehbar erteilt werden muss.
+    Wie in Kapitel~\nameref{subsec:verteilung} bereits beschrieben bietet ein festgelegter Schreiber eine
+    Schwachstelle.
+    Legt man diesen Schreiber jedoch zufällig unter allen Teilnehmern fest, ist es Angreifern unmöglich, den richtigen
+    Teilnehmer zu finden.
+    \item \textbf{Kosten für Teilnahme}
+    Um es Teilnehmern unmöglich zu machen, ihre Gewinnchancen zu weit zu erhöhen, muss die Teilnahme an der Lotterie
+    etwas Kosten.
+    Somit bleibt die Zufälligkeit des Schreibers und die Chancengleichheit garantiert.
+    \item \textbf{Gewinner-Bestimmung ohne zentrale Lotterieleitung}
+    Die Lotterie stellt sich den gleichen Herausforderungen wie die Währung selbst, sie muss völlig dezentral und somit
+    nicht manipulierbar bleiben.
+    Es muss eine Möglichkeit gefunden werden, den Gewinner dezentral zu bestimmen, so dass jeder Teilnehmer dies
+    verifizieren und somit den Schreiber akzeptieren kann.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{lotterie_ohne}
+    \caption{Einrichten einer Lotterie}
+    \label{fig:lotterie_ohne}
+\end{figure}
+
+Für dieses Problem lässt sich das Hash-Verfahren nutzen, denn es bietet den Vorteil, dass das Ergebnis eines Hashes
+unabhängig von der Eingabe ist, jedoch bei mehrmaliger Ausführung immer das selbe ist.
+Abbildung~\nameref{fig:lotterie_ohne} zeigt eine mögliche Nutzung des Hash-Verfahrens in der SHA-256 Implementierung,
+welche in der Umsetzung von Bitcoin an dieser Stelle verwendet wird.
+Die Lotterie läuft folgendermaßen ab:
+\begin{enumerate}
+    \item Vor dem Lotterie-Durchgang wird ein gültiger Teilbereich im Wertebereich des Hash-Verfahrens festgelegt
+    \item Alle Transaktionen, die geschrieben werden müssen, werden von allen Teilnehmern gesammelt und verifiziert.
+    \item Sobald eine Runde der Lotterie beginnt, werden alle gültigen Transaktionen mit einer zufällig gewählten Zahl -
+    \textit{Nonce} - gehashed.
+    \item Liegt der resultierende Hash nicht im gültigen Wertebereich wird eine neue Nonce gewählt und Schritt 3 wiederholt
+    \item Liegt der resultierende Hash im gültigen Wertebereich, so teilt der Teilnehmer seine Nonce an das Netzwerk mit.
+    \item Alle anderen Teilnehmer im Netzwerk prüfen das Ergebnis und akzeptieren den Gewinner gegebenenfalls als Schreiber
+\end{enumerate}
+
+Da das finden der korrekten Nonce beliebig viel Rechenkraft kosten kann, sind die Kosten für die Teilnahme garantiert.
+Die Unvorhersehbarkeit des Hash-Ergebnisses garantiert wiederum die Zufälligkeit der Schreibberechtigung und das
+einfache Prüfen des gültigen Hashes durch das einmalige Ausführen des Hashes mit der gültigen Nonce ermöglicht eine
+dezentrale Prüfung des Ergebnisses und macht somit eine zentrale Lotterieleitung überflüssig.
+
+\subsection{Inflationssicherheit}
+
+Es wurde nun eine Lotterie eingerichtet, welche den Schreiber für das Ledger vollkommen unvorhersehbar bestimmt.
+Jedoch bedarf es für den Gewinner noch eine Art Belohnung, um ihn für die aufgewandte Rechenkraft zu entlohnen und einen
+Anreiz für die Teilnahme an der Lotterie zu schaffen.\\
+Das kann durch die sogenannte \textit{Coinbase}-Transaktion geschafft werden.
+Diese wird von alles Teilnehmern der Lotterie zusätzlich zu allen anderen Transaktionen einbezogen und beschreibt den
+Transfer eines Betrages der Währung an den Teilnehmer selbst.
+Diese Transaktion benötigt keinen Ursprung, da sie neue Einheiten der Währung produziert.
+Somit wird der Gewinner der Lotterie nicht nur entlohnt, es wird auch ein Weg festgelegt, wie neue Währung in den
+Umlauf gebracht wird.\\
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{halving}
+    \caption{Verlauf der Coinbase-Transaktionen}
+    \label{fig:halving}
+\end{figure}
+
+Es muss nun nur der Wert dieser Coinbase-Transaktion festgelegt werden.
+Dieser darf auch nicht konstant bleiben, da die Währung sonst eine konstante Inflation erlebt und somit nicht stabil ist.
+Abbildung~\nameref{fig:halving} zeigt das sogenannte Halving, ein Mechanismus, der den Wert der Coinbase-Transaktion
+nach einer bestimmten Anzahl an Lotteriedurchgängen halbiert, bis er den Wert 0 erreicht hat.
+Danach wird der Gewinner der Lotterie durch Transaktionsgebühren entlohnt, was einen weiteren Anreiz zur Teilnahme bietet.
+Somit ist die Menge der Währung finalisiert, was die Währung an sich von Inflationstendenzen befreit.
