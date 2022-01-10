@@ -2,6 +2,8 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[main=ngerman, english]{babel}
+\usepackage{xcolor}
+\usepackage{wasysym}
 
 \graphicspath{ {./images/} }
 
@@ -46,9 +48,11 @@
     \input{sections/finanzsysteme}
 
     \section{Kryptowährungen}
-    \input{sections/kryptowaehrungen.tex}
+    \label{sec:krypto}
+    \input{sections/kryptowaehrungen}
 
     \section{Wallets und Transaktionen}
+    \input{sections/wallets_tx}
 
     \section{Fazit}
 
