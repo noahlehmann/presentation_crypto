@@ -1,0 +1,163 @@
+In Kapitel~\ref{sec:krypto} wurde gezeigt, wie eine Kryptowährung aufgebaut werden kann, um einige Probleme von klassischen
+Währungen zu eliminieren.
+Im Folgenden sollen noch einmal kurz die Vorteile der Nutzung einer Kryptowährung gezeigt werden, um danach genauer
+auf die Nutzung einer solchen Währung einzugehen.\\
+Grundsätzlich implementieren die meisten Kryptowährungen die grundlegenden Ideen des \textit{web3}, konkret folgende:
+
+\begin{itemize}
+    \item \textbf{Unabhängigkeit von zentralen Instanzen}\\
+    Kryptowährungen geben die Verantwortung der Währung den Nutzern, statt sie zentralen Instanzen anzuvertrauen und sich
+    Manipulationen durch diese und Angriffe auf diese auszusetzen.
+    \item \textbf{Kryptografische Absicherung}\\
+    Kryptowährungen basieren in keiner Form auf Vertrauen, sondern stets auf kryptografischer Absicherung und der quasi
+    Unmöglichkeit, die Verfahren zu umgehen, um die Währung zu manipulieren.
+    \item \textbf{Privatsphäre}\\
+    Kryptowährungen verzichten in der regel auf Identifizierungen der Nutzer und verfolgen die Ansicht, dass die Nutzung
+    einer Währung unter die zu schützende Privatsphäre einzuordnen ist.
+    Durch den Verzicht der Speicherung von sensiblen Daten machen sich Kryptowährungen auch nicht im Sinne der Privatsphäre
+    der Nutzer angreifbar.
+    \item \textbf{Wertstabilität}\\
+    Durch eine kontrollierte Ausschüttung der Währungseinheiten und die Limitierung dieser entziehen sich Kryptowährungen
+    von jeglicher Inflation, Deflation oder vergleichbaren Wertinstabilitäten.
+    Sie sind somit langfristig planbar, zuverlässig und vor Wertmanipulation geschützt.
+\end{itemize}
+
+Durch diese Eigenschaften heben sich Kryptowährungen von aktuellen \textit{Fiat}-Währungen ab und bieten somit eine
+Alternative.
+Im Folgenden soll genauer darauf eingegangen werden, wie Kryptowährungen genutzt werden können und wie die Nutzung konkret
+implementiert sein könnte.
+Hierfür wird erneut die Kryptowährung \textit{Bitcoin} als Beispiel verwendet.
+
+\subsection{Krypto-Wallets}
+\label{subsec:wallets}
+
+Wie bereits angesprochen versuchen Kryptowährungen die Identifizierbarkeit aus der Währung zu entfernen.
+Primärer Fokus liegt hier bei der Eliminierung persönlicher Daten aus der Identifizierung des Nutzers.
+Die Herausforderung liegt also darin, eine Art Konto für eine Währung anzulegen, für das man sich nicht bei einer zentralen
+Bank identifizieren muss und das nicht von anderen Nutzern oder Angreifern manipuliert werden kann.\\
+Auch hierfür bedienen sich gängige Kryptowährungen der Kryptografie, indem sie zur eindeutigen Identifizierung eines Nutzers
+asymmetrische Verschlüsselungsverfahren anwenden.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{keygeneration}
+    \caption{Erstellung eines Key-Pairs}
+    \label{fig:key}
+\end{figure}
+
+In Abbildung~\ref{fig:key} wird anschaulich dargestellt, wie Nutzer beliebig viele Schlüsselpaare erzeugen können, aus
+denen dann Adressen zur Identifizierung erzeugt werden können.
+
+\begin{enumerate}
+    \item Erstellen einer \textit{Seed-Phrase} aus menschenlesbaren Wörtern
+    \item Hashing der Seed-Phrase zum Erstellen des Seeds
+    \item Ableitung beliebig vieler Schlüsselpaare zur Adressgenerierung und weiteren Nutzung
+\end{enumerate}
+
+Hierbei wird Schritt 1 in vielen gängigen Kryptowährungen angewandt, um das Merken des Seeds zu vereinfachen.
+Ein Nutzer kann somit alle seine Schlüsselpaare regenerieren, indem er sich die Wörter der Seed-Phrase merkt.\\
+Aus einem Schlüsselpaar kann nun eine Adresse erzeugt werden, wie Abbildung~\ref{fig:adresse} zeigt.
+Diese Adresse können nun der Nutzer und alle anderen Teilnehmer nutzen, um aus der Blockchain alle Transaktionen mit
+dieser Adresse auszulesen.
+Durch diese Transaktionen kann dann der Kontostand des Nutzers ermittelt werden, wodurch spätere Transaktionen validiert
+werden können.
+Abbildung~\ref{fig:adresse} zeigt in folgenden Schritten, wie eine Bitcoin Adresse aus einem Schlüsselpaar generiert
+werden kann:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{adresse}
+    \caption{Erstellung einer Adresse}
+    \label{fig:adresse}
+\end{figure}
+
+\begin{enumerate}
+    \item Doppel-Hash des Public-Keys zur Verkleinerung dessen auf einen Wertebereich von 160 Bit
+    \item Kodierung des Hashes zu Base58
+\end{enumerate}
+
+Der Doppel-Hash in Schritt 1 ist in diesem konkreten Fall eine Vorsichtsmaßnahme, um die Wahrscheinlichkeit von
+Kollisionen weiter zu verhindern.
+Das eigentliche Ziel des Hashes ist es, den Public-Key deutlich zu verkleinern, um die Nutzung der späteren Adresse
+zu vereinfachen.
+Auch Schritt 2 dient lediglich der einfacheren Nutzung, da Base58 ähnlich scheinende Zeichen aus dem Zeichensatz entfernt.
+Somit sollen Verwechslungen vermieden werden.
+Im Grunde kann also der Public-Key zur Identifizierung eines Nutzers genutzt werden, in der Praxis wandelt man diesen
+zur einfacheren Nutzung allerdings etwas ab.
+Daraus resultiert die Adresse.\\
+Wie bei asymmetrischen Verschlüsselungsverfahren gängig kann nun der Public-Key des Schlüsselpaars an alle Nutzer im Netzwerk
+weitergegeben werden.
+Der Private-Key sollte dabei nie Preis gegeben werden.\\
+Führt man nun eine Transaktion aus, so signiert der Sender die Transaktion mit seinem Private-Key.
+Somit ist garantiert, dass die Transaktion definitiv vom entsprechenden Nutzer angestoßen wurde.
+Der Empfänger ubd alle anderen Teilnehmer im Netzwerk können diese Transaktion verifizieren, indem sie sie mit dem
+Public-Key des Senders entschlüsseln.
+Der Inhalt einer Transaktion besteht somit nur aus zwei Adressen, der des Senders und der des Empfängers und des Betrages,
+der transferiert werden soll.
+Somit die Datenmenge, die an alle Nutzer bekannt gegeben werden muss ebenfalls auf ein Minimum beschränkt.
+Abbildung~\ref{fig:transaktion} zeigt diesen Ablauf schematisch.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{transaction}
+    \caption{Transaktionsablauf}
+    \label{fig:transaktion}
+\end{figure}
+
+\subsection{Arten von Wallets}
+
+Wie in Kapitel~\ref{subsec:wallets} beschrieben ist eine Wallet nichts anderes als ein Werkzeug, welches für einen Nutzer
+die Adressen, Schlüsselpaare und Transaktionsabläufe betreut. %todo besseres wort
+Dabei limitieren sich Wallets keineswegs auf die Nutzung für nur eine Kryptowährung, stattdessen können sie beliebig komplex
+ausfallen und verschiedene Kryptowährungen für einen Nutzer halten.
+Tabelle~\ref{tab:wallets} zeigt verschiedene Implementierungsarten von Wallets für Kryptowährungen.
+\begin{table}[]
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Hot Wallets}} & \multicolumn{2}{c}{\textbf{Cold Wallets}} \\ \midrule
+        \multicolumn{2}{c}{Web-Anwendung} & \multicolumn{2}{c}{Hardware} \\
+        \multicolumn{2}{c}{Mobile-Anwendung} & \multicolumn{2}{c}{Digital} \\
+        \multicolumn{2}{c}{Desktop-Anwendung} & \multicolumn{2}{c}{Papier} \\ \midrule
+        \multicolumn{1}{c}{\textcolor{green}{\textbf{+}}} &
+        \begin{tabular}[c]{@{}l@{}}
+            einfach\\ kostenfrei
+        \end{tabular} &
+        \multicolumn{1}{c}{\textcolor{green}{\textbf{+}}} &
+        sehr sicher \\
+        \multicolumn{1}{c}{\textcolor{red}{\textbf{--}}} & unsicher &
+        \multicolumn{1}{c}{\textcolor{red}{\textbf{--}}} &
+        \begin{tabular}[c]{@{}l@{}}
+            teuer\\ schwerer Einstieg
+        \end{tabular} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Arten von Krypto-Wallets}
+    \label{tab:wallets}
+\end{table}
+
+Wallets kann man grundsätzlich in zwei Arten unterscheiden, Cold-Wallets und Hot-Wallets.
+Man betrachtet Hot-Wallets im Allgemeinen als einfacher zu Nutzen und günstiger in der Anschaffung.
+Da sie jedoch, wie der Name impliziert, immer am Netzwerk hängen, machen Hot Wallets sich leicht angreifbar und sind
+für die Nutzung mit großen Beträgen nicht zu empfehlen.\\
+Cold-Wallets hingegen sind oft komplizierter in der Nutzung und oftmals auch teuer in der Anschaffung, sind aber deutlich
+sicherer als Hot-Wallets, insofern sie korrekt genutzt werden.
+Wie der Name schon impliziert, hängen Cold-Wallets nicht permanent am Netzwerk und sind somit in der Zeit, in der sie
+physisch getrennt sind, nicht über das Netzwerk angreifbar.
+
+\subsection{Arten von Kryptowährungen}
+
+Da \textit{Bitcoin} allgemein als die erste funktionierende und tatsächlich implementierte Kryptowährung gilt unterteilt
+man den Begriff Kryptowährung allgemein in zwei Unterbereiche: \textit{Bitcoin} und \textit{Altcoin}.
+Altcoin beschreibt alle Währungen außer \textit{Bitcoin} und wird selbst noch einmal in zwei Unterkategorien geteilt:
+Bitcoin-Abwandlungen und Kryptowährungen mit nativen Blockchains.
+Bitcoin Abwandlungen sind hierbei Währungen, welche lediglich Teile der Bitcoin Implementierung abgewandelt haben und deren
+Blockchain in den frühen Blöcken identisch mit der von Bitcoin ist.
+Währungen mit einer nativen oder eigenen Blockchain sind seit Beginn ihrer Blockchain unabhängig von Bitcoin entwickelt worden.
+Abbildung~\ref{fig:coins} zeigt die Unterteilung von Kryptowährungen und gibt einige Beispiele für die Unterkategorien an.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{waehrungen}
+    \caption{Kryptowährungen}
+    \label{fig:coins}
+\end{figure}
