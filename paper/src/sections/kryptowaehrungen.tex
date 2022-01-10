@@ -128,6 +128,9 @@ Da das finden der korrekten Nonce beliebig viel Rechenkraft kosten kann, sind di
 Die Unvorhersehbarkeit des Hash-Ergebnisses garantiert wiederum die Zufälligkeit der Schreibberechtigung und das
 einfache Prüfen des gültigen Hashes durch das einmalige Ausführen des Hashes mit der gültigen Nonce ermöglicht eine
 dezentrale Prüfung des Ergebnisses und macht somit eine zentrale Lotterieleitung überflüssig.
+Die Kosten des Hash-verfahrens bietet den weiteren Vorteil, dass eine Manipulation des Ledgers durch den Schreiber nicht rentabel ist.
+Die restlichen Teilnehmer können die Änderungen sehr einfach prüfen und notfalls ablehnen, womit der Schreiber
+sämtliche investierte Rechenkraft verschwendet hat.
 
 \subsection{Inflationssicherheit}
 
@@ -154,3 +157,98 @@ Abbildung~\nameref{fig:halving} zeigt das sogenannte Halving, ein Mechanismus, d
 nach einer bestimmten Anzahl an Lotteriedurchgängen halbiert, bis er den Wert 0 erreicht hat.
 Danach wird der Gewinner der Lotterie durch Transaktionsgebühren entlohnt, was einen weiteren Anreiz zur Teilnahme bietet.
 Somit ist die Menge der Währung finalisiert, was die Währung an sich von Inflationstendenzen befreit.
+
+\subsection{Synchronisation}
+
+Es wurde nun eine Währung geschaffen, deren Ledger dezentral von allen Teilnehmern gehalten wird.
+Eine Sammlung von Transaktionen wird von einem durch die Lotterie zufällig gewählten Schreiber festgehalten und von allen
+Nutzern verifiziert.
+Die Manipulation des Ledgers wird durch die Kosten des Hash-Verfahrens unterbunden, die Kosten hingegen werden durch
+Transaktionsgebühren und die Coinbase-Transaktion gerechtfertigt.\\
+Was noch nicht geklärt ist, ist wie genau das Ledger gesichert wird, denn neue Mitglieder im Netzwerk könnten nach wie
+vor mit korrumpierten Versionen manipuliert werden.
+Hier kommt  die sogenannte \textit{Blockchain} ins Spiel.
+Wie der Name vermuten lässt ist die Blockchain lediglich die Aneinanderreihung von Blöcken, wobei ein Block durch alle
+folgenden Blöcke abgesichert wird.
+Ein Block enthält die zu sichernden Informationen, im Falle der Kryptowährung die Transaktionen, den Hash des vorherigen
+Blockes und den Arbeitsnachweis des Schreibers, die sogenannte \textit{Proof of Work}.
+Ausgenommen ist hier der erste Block der Blockchain, auch \textit{Genesis-Block} genannt, welcher keine Informationen
+zum vorigen Block enthält\footnote{Siehe Abbildung~\ref{fig:blockchain}}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{blockchain}
+    \caption{Schema einer Blockchain}
+    \label{fig:blockchain}
+\end{figure}
+
+Der Hash des vorigen Blockes garantiert die Unveränderbarkeit des Blockes, denn um nun einen älteren Block zu manipulieren,
+müsste ein Angreifer die Informationen in dem Block so manipulieren, dass der selbe Hash entsteht, also eine Kollision
+verursachen, was bei heutigen Hash-Verfahren quasi unmöglich ist.%todo Nachweis
+Eine Manipulation eines Blockes würde somit alle nachfolgenden Blöcke unbrauchbar machen.
+Somit muss die Hash-Eingabe in der Lotterie noch um den Hash des vorigen Blockes erweitert werden, dies ist in Abbildung
+~\ref{fig:lotterie} dargestellt.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{lotterie}
+    \caption{Einbinden der Blockchain in Lotterie}
+    \label{fig:lotterie}
+\end{figure}
+
+Der Gewinner der Lotterie macht nun nicht einfach Einträge in ein Ledger, stattdessen schreibt er einen neuen Block in
+die Blockchain, welche fortan als Ledger angesehen werden kann.
+
+\subsection{Stabilität}
+
+Im Grunde ist die Währung nun komplett.
+Es wurde ein dezentrales Ledger durch die Blockchain erschaffen, welches nicht mehr manipuliert werden kann und in das
+neue Einträge - oder Blöcke - von zufällig gewählten Schreibern geschrieben werden.
+In diesem Ablauf wird die Skalierung jedoch noch nicht einbezogen, denn in einem beliebig großen Netzwerk von Teilnehmern,
+die ständig miteinander kommunizieren, muss die Latenz bei der Übertragung von Nachrichten mit beachtet werden.\\
+Nimmt man also ein weltweites Netzwerk, so kann es in der Verlosung der  Schreibrechte passieren, dass in unterschiedlichen
+Teilen des Netzwerkes unterschiedliche Blöcke gefunden werden, die alle gültig sind.
+Grund hierfür sind Transaktionen, die nähere Knoten im Netzwerk eher erreichen, als weiter entfernte.
+Verteilte Teilnehmer im Netzwerk starten ihren Versuch in der Lotterie also mit unterschiedlichen Transaktionen.
+Finden nun mehrere Teilnehmer im Netzwerk gleichzeitig gültige Blöcke, in denen unterschiedliche Transaktionen gehalten
+werden, bevor diese Transaktionen und die Blöcke von allen Teilnehmern akzeptiert oder gar empfangen wurden, so kommt es
+zu sogenannten \textit{Blockkollisionen}.
+Hier akzeptieren alle Teilnehmer jeweils den gültigen Block, dessen Transaktionen sie bereits kannten und der sie als erstes
+erreicht hat.
+Es kann also zu Zeitpunkten kommen, in denen verschiedene Blöcke in der Blockchain akzeptiert werden.
+Um nun ein Spalten der Blockchain zu vermeiden und einen allgemeinen Konsens herzustellen muss ein weiteres Konsens-
+Verfahren eingeführt werden.\\
+Im Falle von Bitcoin heißt dieser Konsens \textit{Nakamoto-Konsens}.
+Dieser besagt, dass die Blockchain mit dem höchsten Arbeitsaufwand, \textit{Proof of Work}, akzeptiert wird.
+Findet somit ein Teilnehmer einen weiteren Block und teilt ihn an alle anderen Teilnehmer mit, bevor jemand anderes einen
+Block findet, so wird dessen darunterliegende Blockchain als neue Grundlage akzeptiert, da in diese am meisten Aufwand
+geflossen ist.
+Alle anderen Blöcke werden verworfen.
+Abbildung~\ref{fig:kollision} zeigt diesen Ablauf beispielhaft.
+Hier kollidieren die Blöcke \textit{B} und \textit{C}, wobei Block \textit{D} Block \textit{C} zuerst bestätigt.
+Block \textit{B} wird nun verworfen.
+Verworfene Transaktionen gehen allerdings nicht verloren, sie werden in einem späteren Block neu aufgenommen und solange
+mit neuen Transaktionen im sogenannten \textit{Transaktionspool} gehalten, den alle Nutzer bei sich halten.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.3\textwidth]{kollision}
+    \caption{Nagamoto Konsens}
+    \label{fig:kollision}
+\end{figure}
+
+Es wurde nun ein Protokoll geschaffen, welches ein dezentrales Ledger durch eine Blockchain realisiert, die jeder Nutzer
+der Währung halten und verifizieren kann.
+Alle Teilnehmer des Netzwerks sind gleichberechtigt und dürfen somit alle neue Blöcke schreiben, Voraussetzung für eine
+Schreibberechtigung ist jedoch das finden einer gültigen Zufallszahl, \textit{Nonce}, welche sobald sie gefunden wurde
+als Arbeitsnachweis, \textit{Proof of Work}, von allen Teilnehmer akzeptiert wird.
+Die Kosten der Berechnung machen Manipulationsversuche unwirtschaftlich, da diese leicht erkannt und abgelehnt werden
+können.
+Für den Aufwand des Hashens wird der Schreiber mit der \textit{Coinbase-Transaktion} und Transaktionsgebühren belohnt.
+Die \textit{Coinbase-Transaktion} reguliert ebenfalls die Gesamtmenge der Währungseinheiten, da sie nach einer bestimmten
+Anzahl an geschriebenen Blöcken im Wert halbiert wird.
+Das verhinder eine Inflation der Währung.
+Sollten Blöcke durch die Größe des Netzwerks geschuldet kollidieren, so gilt die Blockchain mit dem höchsten Arbeitsaufwand
+als neue akzeptierte Blockchain.
+Alle anderen Blöcke werden verworfen, die Transaktionen werden in späteren Blöcken festgehalten.
+
