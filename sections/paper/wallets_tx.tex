@@ -1,22 +1,23 @@
 In Kapitel~\ref{sec:krypto} wurde gezeigt, wie eine Kryptowährung aufgebaut werden kann, um einige Probleme von klassischen
 Währungen zu eliminieren.
 Im Folgenden sollen noch einmal kurz die Vorteile der Nutzung einer Kryptowährung gezeigt werden, um danach genauer
-auf die Nutzung einer solchen Währung einzugehen.\\
+auf die Nutzung einer solchen Währung einzugehen.
+
 Grundsätzlich implementieren die meisten Kryptowährungen die grundlegenden Ideen des \textit{web3}, konkret folgende:
 
 \begin{itemize}
-    \item \textbf{Unabhängigkeit von zentralen Instanzen}\\
+    \item \textbf{Unabhängigkeit von zentralen Instanzen}
     Kryptowährungen geben die Verantwortung der Währung den Nutzern, statt sie zentralen Instanzen anzuvertrauen und sich
     Manipulationen durch diese und Angriffe auf diese auszusetzen.
-    \item \textbf{Kryptografische Absicherung}\\
+    \item \textbf{Kryptografische Absicherung}
     Kryptowährungen basieren in keiner Form auf Vertrauen, sondern stets auf kryptografischer Absicherung und der quasi
     Unmöglichkeit, die Verfahren zu umgehen, um die Währung zu manipulieren.
-    \item \textbf{Privatsphäre}\\
+    \item \textbf{Privatsphäre}
     Kryptowährungen verzichten in der regel auf Identifizierungen der Nutzer und verfolgen die Ansicht, dass die Nutzung
     einer Währung unter die zu schützende Privatsphäre einzuordnen ist.
     Durch den Verzicht der Speicherung von sensiblen Daten machen sich Kryptowährungen auch nicht im Sinne der Privatsphäre
     der Nutzer angreifbar.
-    \item \textbf{Wertstabilität}\\
+    \item \textbf{Wertstabilität}
     Durch eine kontrollierte Ausschüttung der Währungseinheiten und die Limitierung dieser entziehen sich Kryptowährungen
     von jeglicher Inflation, Deflation oder vergleichbaren Wertinstabilitäten.
     Sie sind somit langfristig planbar, zuverlässig und vor Wertmanipulation geschützt.
@@ -34,13 +35,14 @@ Hierfür wird erneut die Kryptowährung \textit{Bitcoin} als Beispiel verwendet.
 Wie bereits angesprochen versuchen Kryptowährungen die Identifizierbarkeit aus der Währung zu entfernen.
 Primärer Fokus liegt hier bei der Eliminierung persönlicher Daten aus der Identifizierung des Nutzers.
 Die Herausforderung liegt also darin, eine Art Konto für eine Währung anzulegen, für das man sich nicht bei einer zentralen
-Bank identifizieren muss und das nicht von anderen Nutzern oder Angreifern manipuliert werden kann.\\
+Bank identifizieren muss und das nicht von anderen Nutzern oder Angreifern manipuliert werden kann.
+
 Auch hierfür bedienen sich gängige Kryptowährungen der Kryptografie, indem sie zur eindeutigen Identifizierung eines Nutzers
 asymmetrische Verschlüsselungsverfahren anwenden.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{keygeneration}
+    \includegraphics[width=0.4\textwidth]{/home/nlehmann/Code/anonymitaet_in_krypto/images/keygeneration}
     \caption{Erstellung eines Key-Pairs}
     \label{fig:key}
 \end{figure}
@@ -55,7 +57,8 @@ denen dann Adressen zur Identifizierung erzeugt werden können.
 \end{enumerate}
 
 Hierbei wird Schritt 1 in vielen gängigen Kryptowährungen angewandt, um das Merken des Seeds zu vereinfachen.
-Ein Nutzer kann somit alle seine Schlüsselpaare regenerieren, indem er sich die Wörter der Seed-Phrase merkt.\\
+Ein Nutzer kann somit alle seine Schlüsselpaare regenerieren, indem er sich die Wörter der Seed-Phrase merkt.
+
 Aus einem Schlüsselpaar kann nun eine Adresse erzeugt werden, wie Abbildung~\ref{fig:adresse} zeigt.
 Diese Adresse können nun der Nutzer und alle anderen Teilnehmer nutzen, um aus der Blockchain alle Transaktionen mit
 dieser Adresse auszulesen.
@@ -66,7 +69,7 @@ werden kann:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{adresse}
+    \includegraphics[width=0.4\textwidth]{/home/nlehmann/Code/anonymitaet_in_krypto/images/adresse}
     \caption{Erstellung einer Adresse}
     \label{fig:adresse}
 \end{figure}
@@ -84,10 +87,12 @@ Auch Schritt 2 dient lediglich der einfacheren Nutzung, da Base58 ähnlich schei
 Somit sollen Verwechslungen vermieden werden.
 Im Grunde kann also der Public-Key zur Identifizierung eines Nutzers genutzt werden, in der Praxis wandelt man diesen
 zur einfacheren Nutzung allerdings etwas ab.
-Daraus resultiert die Adresse.\\
+Daraus resultiert die Adresse.
+
 Wie bei asymmetrischen Verschlüsselungsverfahren gängig kann nun der Public-Key des Schlüsselpaars an alle Nutzer im Netzwerk
 weitergegeben werden.
-Der Private-Key sollte dabei nie Preis gegeben werden.\\
+Der Private-Key sollte dabei nie Preis gegeben werden.
+
 Führt man nun eine Transaktion aus, so signiert der Sender die Transaktion mit seinem Private-Key.
 Somit ist garantiert, dass die Transaktion definitiv vom entsprechenden Nutzer angestoßen wurde.
 Der Empfänger ubd alle anderen Teilnehmer im Netzwerk können diese Transaktion verifizieren, indem sie sie mit dem
@@ -99,7 +104,7 @@ Abbildung~\ref{fig:transaktion} zeigt diesen Ablauf schematisch.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{transaction}
+    \includegraphics[width=0.4\textwidth]{/home/nlehmann/Code/anonymitaet_in_krypto/images/transaction}
     \caption{Transaktionsablauf}
     \label{fig:transaktion}
 \end{figure}
@@ -137,7 +142,8 @@ Tabelle~\ref{tab:wallets} zeigt verschiedene Implementierungsarten von Wallets f
 Wallets kann man grundsätzlich in zwei Arten unterscheiden, Cold-Wallets und Hot-Wallets.
 Man betrachtet Hot-Wallets im Allgemeinen als einfacher zu Nutzen und günstiger in der Anschaffung.
 Da sie jedoch, wie der Name impliziert, immer am Netzwerk hängen, machen Hot Wallets sich leicht angreifbar und sind
-für die Nutzung mit großen Beträgen nicht zu empfehlen.\\
+für die Nutzung mit großen Beträgen nicht zu empfehlen.
+
 Cold-Wallets hingegen sind oft komplizierter in der Nutzung und oftmals auch teuer in der Anschaffung, sind aber deutlich
 sicherer als Hot-Wallets, insofern sie korrekt genutzt werden.
 Wie der Name schon impliziert, hängen Cold-Wallets nicht permanent am Netzwerk und sind somit in der Zeit, in der sie
@@ -156,7 +162,7 @@ Abbildung~\ref{fig:coins} zeigt die Unterteilung von Kryptowährungen und gibt e
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{waehrungen}
+    \includegraphics[width=0.4\textwidth]{/home/nlehmann/Code/anonymitaet_in_krypto/images/waehrungen}
     \caption{Kryptowährungen}
     \label{fig:coins}
 \end{figure}

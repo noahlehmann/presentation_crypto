@@ -5,6 +5,8 @@
 \usepackage{xcolor}
 \usepackage{wasysym}
 \usepackage{siunitx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 
 \graphicspath{ {./images/} }
 
@@ -32,9 +34,9 @@
 
     \begin{abstract}
         In einer Zeit, in der das Finanzsystem wiederholt stark inflationäre Tendenzen entwickelt und das Konzept
-        \textit{Web3} immer mehr an Bedeutung gewinnt, bedarf es einer neuen Technologie, die durch die Ideen des
-        \textit{Web3} die Probleme des Finanzsystems zu lösen versucht.
-        Hierfür entwickelte die nach wie vor anonyme Entität Satoshi Nakamoto 2008 erstmal ein funktionierendes Konzept
+        \textit{Web 3.0} immer mehr an Bedeutung gewinnt, bedarf es einer neuen Technologie, die durch die Ideen des
+        \textit{Web 3.0} die Probleme des Finanzsystems zu lösen versucht.
+        Hierfür entwickelte die nach wie vor anonyme Entität Satoshi Nakamoto 2008 erstmals ein funktionierendes Konzept
         für eine Kryptowährung namens \textit{Bitcoin}.
         \textit{Bitcoin} dezentralisiert sein Transaktionssystem und eliminiert somit alle Mittelmänner.
         Dadurch entsteht ein über die sogenannte \textit{Blockchain} abgesichertes Peer-to-Peer-Bargeld.
@@ -44,25 +46,28 @@
 
     \maketitle
 
+
     \section{Einführung}
-    \input{sections/einfuehrung}
+    \input{sections/paper/einfuehrung}
 
     \section{Bekannte Finanzsysteme}
-    \input{sections/finanzsysteme}
+    \input{sections/paper/finanzsysteme}
 
     \section{Kryptowährungen}
     \label{sec:krypto}
-    \input{sections/kryptowaehrungen}
+    \input{sections/paper/kryptowaehrungen}
 
     \section{Wallets und Transaktionen}
-    \input{sections/wallets_tx}
+    \input{sections/paper/wallets_tx}
+
+
 
     \section{Fazit}
-    \input{sections/fazit.tex}
+    \input{sections/paper/fazit.tex}
 
-
+    \nocite{*}
     \bibliographystyle{ACM-Reference-Format}
-    \bibliography{../src/main}
+    \bibliography{paper}
 
     \appendix
 
