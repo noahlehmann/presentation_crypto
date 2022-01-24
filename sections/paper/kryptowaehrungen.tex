@@ -23,7 +23,7 @@ Wie im Kapitel~\nameref{subsec:fiat} bereits erläutert wurde, bieten zentralisi
 Manipulationsmöglichkeiten, sowohl durch Angriffe als auch durch Einflussnahme Dritter.
 Beim Aufbau einer neuen Währung muss man somit als erstes die Dezentralität garantieren.
 
-Um eine Währung betreiben zu können, benötigt man ein sogenanntes Hauptbuch - im Folgenden als \textit{Ledger}
+Um eine Währung betreiben zu können, benötigt man ein sogenanntes Hauptbuch - im Folgenden als \emph{Ledger}
 bezeichnet.
 Dieses hält alle Informationen zu aktuellen Kontoständen und vergangenen Transaktionen.
 Somit lassen sich alle Änderungen nachvollziehen.
@@ -120,7 +120,7 @@ Die Lotterie läuft folgendermaßen ab:
     \item Vor dem Lotterie-Durchgang wird ein gültiger Teilbereich im Wertebereich des Hash-Verfahrens festgelegt
     \item Alle Transaktionen, die geschrieben werden müssen, werden von allen Teilnehmern gesammelt und verifiziert.
     \item Sobald eine Runde der Lotterie beginnt, werden alle gültigen Transaktionen mit einer zufällig gewählten Zahl -
-    \textit{Nonce} - gehashed.
+    \emph{Nonce} - gehashed.
     \item Liegt der resultierende Hash nicht im gültigen Wertebereich wird eine neue Nonce gewählt und Schritt 3 wiederholt
     \item Liegt der resultierende Hash im gültigen Wertebereich, so teilt der Teilnehmer seine Nonce an das Netzwerk mit.
     \item Alle anderen Teilnehmer im Netzwerk prüfen das Ergebnis und akzeptieren den Gewinner gegebenenfalls als Schreiber
@@ -139,7 +139,7 @@ Es wurde nun eine Lotterie eingerichtet, welche den Schreiber für das Ledger vo
 Jedoch bedarf es für den Gewinner noch eine Art Belohnung, um ihn für die aufgewandte Rechenkraft zu entlohnen und einen
 Anreiz für die Teilnahme an der Lotterie zu schaffen.
 
-Das kann durch die sogenannte \textit{Coinbase}-Transaktion geschafft werden.
+Das kann durch die sogenannte \emph{Coinbase}-Transaktion geschafft werden.
 Diese wird von allen Teilnehmern der Lotterie zusätzlich zu allen anderen Transaktionen einbezogen und beschreibt den
 Transfer eines Betrages der Währung an den Teilnehmer selbst.
 Diese Transaktion benötigt keinen Ursprung, da sie neue Einheiten der Währung produziert.
@@ -170,12 +170,12 @@ Transaktionsgebühren und die Coinbase-Transaktion gerechtfertigt.
 
 Was noch nicht geklärt ist, ist wie genau das Ledger gesichert wird, denn neue Mitglieder im Netzwerk könnten nach wie
 vor mit korrumpierten Versionen manipuliert werden.
-Hier kommt die sogenannte \textit{Blockchain} ins Spiel.
+Hier kommt die sogenannte \emph{Blockchain} ins Spiel.
 Wie der Name vermuten lässt ist die Blockchain lediglich die Aneinanderreihung von Blöcken, wobei ein Block durch alle
 folgenden Blöcke abgesichert wird.
 Ein Block enthält die zu sichernden Informationen, im Falle der Kryptowährung die Transaktionen, den Hash des vorherigen
-Blockes und den Arbeitsnachweis des Schreibers, die sogenannte \textit{Proof of Work}.
-Ausgenommen ist hier der erste Block der Blockchain, auch \textit{Genesis-Block} genannt, welcher keine Informationen
+Blockes und den Arbeitsnachweis des Schreibers, die sogenannte \emph{Proof of Work}.
+Ausgenommen ist hier der erste Block der Blockchain, auch \emph{Genesis-Block} genannt, welcher keine Informationen
 zum vorigen Block enthält\footnote{Siehe Abbildung~\ref{fig:blockchain}}.
 
 \begin{figure}
@@ -216,24 +216,24 @@ Grund hierfür sind Transaktionen, die nähere Knoten im Netzwerk eher erreichen
 Verteilte Teilnehmer im Netzwerk starten ihren Versuch in der Lotterie also mit unterschiedlichen Transaktionen.
 Finden nun mehrere Teilnehmer im Netzwerk gleichzeitig gültige Blöcke, in denen unterschiedliche Transaktionen gehalten
 werden, bevor diese Transaktionen und die Blöcke von allen Teilnehmern akzeptiert oder gar empfangen wurden, so kommt es
-zu sogenannten \textit{Blockkollisionen}.
+zu sogenannten \emph{Blockkollisionen}.
 Hier akzeptieren alle Teilnehmer jeweils den gültigen Block, dessen Transaktionen sie bereits kannten und der sie als erstes
 erreicht hat.
 Es kann also zu Zeitpunkten kommen, in denen verschiedene Blöcke in der Blockchain akzeptiert werden.
 Um nun ein Spalten der Blockchain zu vermeiden und einen allgemeinen Konsens herzustellen muss ein weiteres Konsens-
 Verfahren eingeführt werden.
 
-Im Falle von Bitcoin heißt dieser Konsens \textit{Nakamoto-Konsens}.
-Dieser besagt, dass die Blockchain mit dem höchsten Arbeitsaufwand, \textit{Proof of Work}, akzeptiert wird.
+Im Falle von Bitcoin heißt dieser Konsens \emph{Nakamoto-Konsens}.
+Dieser besagt, dass die Blockchain mit dem höchsten Arbeitsaufwand, \emph{Proof of Work}, akzeptiert wird.
 Findet somit ein Teilnehmer einen weiteren Block und teilt ihn an alle anderen Teilnehmer mit, bevor jemand anderes einen
 Block findet, so wird dessen darunterliegende Blockchain als neue Grundlage akzeptiert, da in diese am meisten Aufwand
 geflossen ist.
 Alle anderen Blöcke werden verworfen.
 Abbildung~\ref{fig:kollision} zeigt diesen Ablauf beispielhaft.
-Hier kollidieren die Blöcke \textit{B} und \textit{C}, wobei Block \textit{D} Block \textit{C} zuerst bestätigt.
-Block \textit{B} wird nun verworfen.
+Hier kollidieren die Blöcke \emph{B} und \emph{C}, wobei Block \emph{D} Block \emph{C} zuerst bestätigt.
+Block \emph{B} wird nun verworfen.
 Verworfene Transaktionen gehen allerdings nicht verloren, sie werden in einem späteren Block neu aufgenommen und solange
-mit neuen Transaktionen im sogenannten \textit{Transaktionspool} gehalten, den alle Nutzer bei sich halten.
+mit neuen Transaktionen im sogenannten \emph{Transaktionspool} gehalten, den alle Nutzer bei sich halten.
 
 \begin{figure}
     \centering
@@ -245,12 +245,12 @@ mit neuen Transaktionen im sogenannten \textit{Transaktionspool} gehalten, den a
 Es wurde nun ein Protokoll geschaffen, welches ein dezentrales Ledger durch eine Blockchain realisiert, die jeder Nutzer
 der Währung halten und verifizieren kann.
 Alle Teilnehmer des Netzwerks sind gleichberechtigt und dürfen somit alle neue Blöcke schreiben, Voraussetzung für eine
-Schreibberechtigung ist jedoch das finden einer gültigen Zufallszahl, \textit{Nonce}, welche, sobald sie gefunden wurde
-als Arbeitsnachweis, \textit{Proof of Work}, von allen Teilnehmer akzeptiert wird.
+Schreibberechtigung ist jedoch das finden einer gültigen Zufallszahl, \emph{Nonce}, welche, sobald sie gefunden wurde
+als Arbeitsnachweis, \emph{Proof of Work}, von allen Teilnehmer akzeptiert wird.
 Die Kosten der Berechnung machen Manipulationsversuche unwirtschaftlich, da diese leicht erkannt und abgelehnt werden
 können.
-Für den Aufwand des Hashens wird der Schreiber mit der \textit{Coinbase-Transaktion} und Transaktionsgebühren belohnt.
-Die \textit{Coinbase-Transaktion} reguliert ebenfalls die Gesamtmenge der Währungseinheiten, da sie nach einer bestimmten
+Für den Aufwand des Hashens wird der Schreiber mit der \emph{Coinbase-Transaktion} und Transaktionsgebühren belohnt.
+Die \emph{Coinbase-Transaktion} reguliert ebenfalls die Gesamtmenge der Währungseinheiten, da sie nach einer bestimmten
 Anzahl an geschriebenen Blöcken im Wert halbiert wird.
 Das verhinder eine Inflation der Währung.
 Sollten Blöcke durch die Größe des Netzwerks geschuldet kollidieren, so gilt die Blockchain mit dem höchsten Arbeitsaufwand

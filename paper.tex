@@ -7,6 +7,8 @@
 \usepackage{siunitx}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[nolist]{acronym}
+
 
 \graphicspath{ {./images/} }
 
@@ -20,6 +22,8 @@
 \def\hyph{-\penalty0\hskip0pt\relax}
 
 \begin{document}
+    \input{includes/acronyms}
+
     \title{Kryptowährungen}
     \subtitle{Einführung und praktische Ansätze}
     \author{Noah Lehmann}
@@ -34,12 +38,12 @@
 
     \begin{abstract}
         In einer Zeit, in der das Finanzsystem wiederholt stark inflationäre Tendenzen entwickelt und das Konzept
-        \textit{Web 3.0} immer mehr an Bedeutung gewinnt, bedarf es einer neuen Technologie, die durch die Ideen des
-        \textit{Web 3.0} die Probleme des Finanzsystems zu lösen versucht.
+        \emph{Web 3.0} immer mehr an Bedeutung gewinnt, bedarf es einer neuen Technologie, die durch die Ideen des
+        \emph{Web 3.0} die Probleme des Finanzsystems zu lösen versucht.
         Hierfür entwickelte die nach wie vor anonyme Entität Satoshi Nakamoto 2008 erstmals ein funktionierendes Konzept
-        für eine Kryptowährung namens \textit{Bitcoin}.
-        \textit{Bitcoin} dezentralisiert sein Transaktionssystem und eliminiert somit alle Mittelmänner.
-        Dadurch entsteht ein über die sogenannte \textit{Blockchain} abgesichertes Peer-to-Peer-Bargeld.
+        für eine Kryptowährung namens \emph{Bitcoin}.
+        \emph{Bitcoin} dezentralisiert sein Transaktionssystem und eliminiert somit alle Mittelmänner.
+        Dadurch entsteht ein über die sogenannte \emph{Blockchain} abgesichertes Peer-to-Peer-Bargeld.
     \end{abstract}
 
     \keywords{Kryptowährungen, Bitcoin, Blockchain, Konsens-Protokoll, Dezentralität}
