@@ -1,10 +1,10 @@
-Im vergangenen Kapitel wurden einige Probleme von vergangenen Währungen und den aktuellen Fiat-Währungen erläutert,
-darunter die Instabilität des Wertes, Manipulierbarkeit und die Zentralität der Fehlerquellen.
+Im letzten Kapitel wurden einige Probleme von vergangenen Währungen und den aktuellen Fiat-Währungen erläutert,
+darunter die Instabilität des Wertes, die Manipulierbarkeit und die Zentralität der Fehlerquellen.
 Kryptowährungen versuchen diese Probleme zu eliminieren, erste Ansätze hierfür wurden ebenfalls im vorigen Kapitel
 gezeigt.
 
 Um zu verstehen, wie Kryptowährungen funktionieren, wird im folgenden Kapitel auf die Ziele von Kryptowährungen
-eingegangen und auf die Ansätze, wie man diese Ziele erreichen kann.
+und auf die Ansätze, wie man diese Ziele erreichen kann, eingegangen.
 Folgende Ziele werden betrachtet:
 \begin{itemize}
     \item Dezentralisierung
@@ -14,14 +14,15 @@ Folgende Ziele werden betrachtet:
     \item Synchronisation
     \item Stabilität
 \end{itemize}
+
 Um diese Ziele und deren Lösungen erklären zu können, wird im folgenden Kapitel eine Währung aufgebaut, die sich stark
 an der Implementierung von Bitcoin~\cite{bitcoin_whitepaper} orientiert.
 
 \subsection{Dezentralisierung}
 
-Wie im Kapitel~\nameref{subsec:fiat} bereits erläutert wurde, bieten zentralisierte Finanzsysteme einige
+Wie im Kapitel~\ref{subsec:fiat} bereits erläutert wurde, bieten zentralisierte Finanzsysteme einige
 Manipulationsmöglichkeiten, sowohl durch Angriffe als auch durch Einflussnahme Dritter.
-Beim Aufbau einer neuen Währung muss man somit als erstes die Dezentralität garantieren.
+Beim Aufbau einer neuen Währung muss man somit als ersten Schritt die Dezentralität garantieren.
 
 Um eine Währung betreiben zu können, benötigt man ein sogenanntes Hauptbuch - im Folgenden als \emph{Ledger}
 bezeichnet.
@@ -36,10 +37,10 @@ Abbildung~\ref{fig:zentral} zeigt eine mögliche Form eines Ledgers.
            \label{fig:zentral}
 \end{figure}
 
-Hält man dieses Ledger nun nur zentral, ergeben sich alle Nachteile einer konventionellen Währung.
-Somit muss das Ledger an alle Beteiligten verteilt werden.
+Hält man dieses Ledger nun nur zentral, ergeben sich alle Nachteile einer konventionellen Währung weshalb das Ledger
+an alle Beteiligten verteilt werden muss.
 Jede Änderung wird an alle Teilnehmer der Währung bekannt gegeben und von allen geprüft.
-Somit lässt sich das Netzwerk wie in Abbildung~\nameref{fig:dezentral} beschreiben.
+Somit lässt sich das Netzwerk wie in Abbildung~\ref{fig:dezentral} beschreiben.
 
 \begin{figure}
     \centering
@@ -54,12 +55,12 @@ Durch die Verteilung des Ledgers wurden nun die Grundlagen einer dezentralen Wä
 \label{subsec:verteilung}
 
 Die Verteilung des Ledgers funktioniert bei einem kleinen Netzwerk sehr gut. 
-Sobald man aber skaliert und ein beliebig großes Netzwerk aufbaut, wird die Kommunikation immer ineffizienter und es
+Sobald man aber skaliert und ein beliebig großes Netzwerk aufbaut, wird die Kommunikation ineffizienter und es
 bieten sich klare Angriffs- und Manipulationsmöglichkeiten. 
-Einige Teilnehmer des Netzwerkes könnten so gefälschte Ausgaben in das Ledger schreiben und dieses an neue Teilnehmer 
+Einige Teilnehmer des Netzwerkes könnten so gefälschte Transaktionen in das Ledger schreiben und dieses an neue Teilnehmer
 kommunizieren. 
 Eine naive Lösung dessen ist das Prüfen und Schreiben durch einen vertrauenswürdigen Teilnehmer, wie in Abbildung
-~\nameref{fig:schreiber} gezeigt.
+~\ref{fig:schreiber} gezeigt.
 
 \begin{figure}
     \centering
@@ -69,38 +70,38 @@ Eine naive Lösung dessen ist das Prüfen und Schreiben durch einen vertrauensw�
 \end{figure}
 
 Dieser vertrauenswürdige Schreiber prüft nun alle Änderungen, die an ihn kommuniziert werden, schreibt diese 
-gegebenenfalls in das Ledger und kommuniziert dies an alle anderen Teilnehmer, die nur Änderungen des Schreibers annehmen.
+gegebenenfalls in das Ledger und kommuniziert dies an alle anderen Teilnehmer, die nur Änderungen des gewählten Schreibers annehmen.
 Dies bedarf ein grundlegendes Vertrauen in den Schreiber, bietet aber wiederum neue Angriffsmöglichkeiten.
-Der Schreiber könnte entweder manipuliert, bedroht oder durch Dritte ersetzt werden, ohne dass die restlichen Teilnehmer
+Der Schreiber könnte entweder manipuliert, bedroht oder ersetzt werden, ohne dass die restlichen Teilnehmer
 im Netzwerk etwas bemerken. 
-In Kapitel~\nameref{subsec:keinvertrauen} wird gezeigt, wie man einen einen vertrauenswürdigen Schreiber in einem dezentralen
+In Kapitel~\ref{subsec:keinvertrauen} wird gezeigt, wie man einen vertrauenswürdigen Schreiber in einem dezentralen
 System festlegen kann, ohne ihn angreifbar zu machen.
 
 \subsection{Kein Vertrauen}
 \label{subsec:keinvertrauen}
 
-Wie bereits beschrieben bietet ein einziger vertrauenswürdiger Schreiber eine Schwachstelle in einer neuen Währung. 
+Wie bereits beschrieben, bietet ein einziger vertrauenswürdiger Schreiber eine Schwachstelle in einem Währungssystem.
 Da das große Ziel einer Kryptowährung die Gleichberechtigung aller Teilnehmer ist, muss man den Vertrauensaspekt beim
 Schreiben in das Ledger entfernen. 
-Der Gleichberechtigung geschuldet müssen alle Teilnehmer im Netzwerk der Währung schreiben können.
-Hierfür kann man eine Lotterie erstellen, welche das Schreibrecht vergibt ud an der grundsätzlich alle Teilnehmer des 
+Der Gleichberechtigung geschuldet müssen alle Teilnehmer im Netzwerk der Währung schreiben können und dürfen.
+Hierfür kann man eine Lotterie erstellen, welche das Schreibrecht vergibt und an der grundsätzlich alle Teilnehmer des
 Netzwerks teilnehmen können.
 Diese Lotterie muss mindestens folgende Bedingungen erfüllen:
 \begin{itemize}
-    \item \textbf{Zufälligkeit der Schreibberechtigung}
+    \item \textbf{Zufälligkeit der Schreibberechtigung}:
     Gegenstand der Verlosung ist die Schreibberechtigung, welche vollkommen unvorhersehbar erteilt werden muss.
-    Wie in Kapitel~\nameref{subsec:verteilung} bereits beschrieben bietet ein festgelegter Schreiber eine
+    Wie in Kapitel~\ref{subsec:verteilung} bereits beschrieben, bietet ein festgelegter Schreiber eine
     Schwachstelle.
     Legt man diesen Schreiber jedoch zufällig unter allen Teilnehmern fest, ist es Angreifern unmöglich, den richtigen
     Teilnehmer zu finden.
-    \item \textbf{Kosten für Teilnahme}
+    \item \textbf{Kosten für Teilnahme}:
     Um es Teilnehmern unmöglich zu machen, ihre Gewinnchancen zu weit zu erhöhen, muss die Teilnahme an der Lotterie
-    etwas Kosten.
+    etwas kosten.
     Somit bleibt die Zufälligkeit des Schreibers und die Chancengleichheit garantiert.
-    \item \textbf{Gewinner-Bestimmung ohne zentrale Lotterieleitung}
+    \item \textbf{Gewinner-Bestimmung ohne zentrale Lotterieleitung}:
     Die Lotterie stellt sich den gleichen Herausforderungen wie die Währung selbst, sie muss völlig dezentral und somit
     nicht manipulierbar bleiben.
-    Es muss eine Möglichkeit gefunden werden, den Gewinner dezentral zu bestimmen, so dass jeder Teilnehmer dies
+    Es muss eine Möglichkeit gefunden werden, den Gewinner dezentral zu bestimmen, sodass jeder Teilnehmer dies
     verifizieren und somit den Schreiber akzeptieren kann.
 \end{itemize}
 
@@ -112,31 +113,31 @@ Diese Lotterie muss mindestens folgende Bedingungen erfüllen:
 \end{figure}
 
 Für dieses Problem lässt sich das Hash-Verfahren nutzen, denn es bietet den Vorteil, dass das Ergebnis eines Hashes
-unabhängig von der Eingabe ist, jedoch bei mehrmaliger Ausführung immer dasselbe ist.
-Abbildung~\nameref{fig:lotterie_ohne} zeigt eine mögliche Nutzung des Hash-Verfahrens in der SHA-256 Implementierung,
+unabhängig von der Eingabe ist, jedoch bei mehrmaliger Ausführung des Hashes immer dasselbe ist.
+Abbildung~\ref{fig:lotterie_ohne} zeigt eine mögliche Nutzung des Hash-Verfahrens in der \ac{SHA-256} Implementierung,
 welche in der Umsetzung von Bitcoin an dieser Stelle verwendet wird.
 Die Lotterie läuft folgendermaßen ab:
 \begin{enumerate}
-    \item Vor dem Lotterie-Durchgang wird ein gültiger Teilbereich im Wertebereich des Hash-Verfahrens festgelegt
+    \item Vor dem Lotterie-Durchgang wird ein gültiger Teilbereich im Wertebereich des Hash-Verfahrens festgelegt.
     \item Alle Transaktionen, die geschrieben werden müssen, werden von allen Teilnehmern gesammelt und verifiziert.
     \item Sobald eine Runde der Lotterie beginnt, werden alle gültigen Transaktionen mit einer zufällig gewählten Zahl -
     \emph{Nonce} - gehashed.
-    \item Liegt der resultierende Hash nicht im gültigen Wertebereich wird eine neue Nonce gewählt und Schritt 3 wiederholt
+    \item Liegt der resultierende Hash nicht im gültigen Wertebereich, so wird eine neue Nonce gewählt und Schritt 3 wiederholt.
     \item Liegt der resultierende Hash im gültigen Wertebereich, so teilt der Teilnehmer seine Nonce an das Netzwerk mit.
-    \item Alle anderen Teilnehmer im Netzwerk prüfen das Ergebnis und akzeptieren den Gewinner gegebenenfalls als Schreiber
+    \item Alle anderen Teilnehmer im Netzwerk prüfen das Ergebnis und akzeptieren den Gewinner gegebenenfalls als Schreiber.
 \end{enumerate}
-Da das finden der korrekten Nonce beliebig viel Rechenkraft kosten kann, sind die Kosten für die Teilnahme garantiert.
+Da das Finden der korrekten Nonce durch die Zufälligkeit der Hash-Ergebnisse beliebig viel Rechenkraft kosten kann, sind die Kosten für die Teilnahme garantiert.
 Die Unvorhersehbarkeit des Hash-Ergebnisses garantiert wiederum die Zufälligkeit der Schreibberechtigung und das
-einfache Prüfen des gültigen Hashes durch das einmalige Ausführen des Hashes mit der gültigen Nonce ermöglicht eine
+einfache Prüfen des gültigen Hash-Werts durch das einmalige Ausführen des Hashes mit der gültigen Nonce ermöglicht eine
 dezentrale Prüfung des Ergebnisses und macht somit eine zentrale Lotterieleitung überflüssig.
-Die Kosten des Hash-verfahrens bietet den weiteren Vorteil, dass eine Manipulation des Ledgers durch den Schreiber nicht rentabel ist.
+Die Kosten des Hash-verfahrens bieten den weiteren Vorteil, dass eine Manipulation des Ledgers durch den Schreiber nicht rentabel ist.
 Die restlichen Teilnehmer können die Änderungen sehr einfach prüfen und notfalls ablehnen, womit der Schreiber
-sämtliche investierte Rechenkraft verschwendet hat.
+sämtliche investierte Rechenkraft verschwendet hätte.
 
 \subsection{Inflationssicherheit}
 
 Es wurde nun eine Lotterie eingerichtet, welche den Schreiber für das Ledger vollkommen unvorhersehbar bestimmt.
-Jedoch bedarf es für den Gewinner noch eine Art Belohnung, um ihn für die aufgewandte Rechenkraft zu entlohnen und einen
+Jedoch bedarf es für den Gewinner noch eine Art Preis, um ihn für die aufgewandte Rechenkraft zu entlohnen und einen
 Anreiz für die Teilnahme an der Lotterie zu schaffen.
 
 Das kann durch die sogenannte \emph{Coinbase}-Transaktion geschafft werden.
@@ -154,9 +155,9 @@ Umlauf gebracht wird.
 \end{figure}
 
 Es muss nun nur der Wert dieser Coinbase-Transaktion festgelegt werden.
-Dieser darf auch nicht konstant bleiben, da die Währung sonst eine konstante Inflation erlebt und somit nicht stabil ist.
-Abbildung~\nameref{fig:halving} zeigt das sogenannte Halving, ein Mechanismus, der den Wert der Coinbase-Transaktion
-nach einer bestimmten Anzahl an Lotterie-Durchgängen halbiert, bis er den Wert 0 erreicht hat.
+Dieser darf nicht konstant bleiben, da die Währung sonst einer konstanten Inflation ausgesetzt wird und somit nicht stabil ist.
+Abbildung~\ref{fig:halving} zeigt das sogenannte \emph{Halving}, ein Mechanismus, der den Wert der Coinbase-Transaktion
+nach einer bestimmten Anzahl an Lotterie-Durchgängen halbiert, bis er den Wert \num{0} erreicht hat.
 Danach wird der Gewinner der Lotterie durch Transaktionsgebühren entlohnt, was einen weiteren Anreiz zur Teilnahme bietet.
 Somit ist die Menge der Währung finalisiert, was die Währung an sich von Inflationstendenzen befreit.
 
@@ -174,7 +175,7 @@ Hier kommt die sogenannte \emph{Blockchain} ins Spiel.
 Wie der Name vermuten lässt ist die Blockchain lediglich die Aneinanderreihung von Blöcken, wobei ein Block durch alle
 folgenden Blöcke abgesichert wird.
 Ein Block enthält die zu sichernden Informationen, im Falle der Kryptowährung die Transaktionen, den Hash des vorherigen
-Blockes und den Arbeitsnachweis des Schreibers, die sogenannte \emph{Proof of Work}.
+Blockes und den Arbeitsnachweis des Schreibers - die sogenannte \emph{Proof of Work}.
 Ausgenommen ist hier der erste Block der Blockchain, auch \emph{Genesis-Block} genannt, welcher keine Informationen
 zum vorigen Block enthält\footnote{Siehe Abbildung~\ref{fig:blockchain}}.
 
@@ -185,10 +186,11 @@ zum vorigen Block enthält\footnote{Siehe Abbildung~\ref{fig:blockchain}}.
     \label{fig:blockchain}
 \end{figure}
 
-Der Hash des vorigen Blockes garantiert die Unveränderbarkeit des Blockes, denn um nun einen älteren Block zu manipulieren,
-müsste ein Angreifer die Informationen in dem Block so manipulieren, dass derselbe Hash entsteht, also eine Kollision
-verursachen, was bei heutigen Hash-Verfahren quasi unmöglich ist.%todo Nachweis
-Eine Manipulation eines Blockes würde somit alle nachfolgenden Blöcke unbrauchbar machen.
+Der Hash des vorigen Blocks garantiert die Unveränderbarkeit des Blocks, denn um nun einen älteren Block zu manipulieren,
+müsste ein Angreifer die Informationen des Blocks so manipulieren, dass derselbe Hash entsteht, also eine Kollision
+verursachen, was bei heutigen Hash-Verfahren quasi unmöglich ist.
+%todo Nachweis
+Eine Manipulation eines Blocks würde somit alle nachfolgenden Blöcke unbrauchbar machen.
 Somit muss die Hash-Eingabe in der Lotterie noch um den Hash des vorigen Blockes erweitert werden, dies ist in Abbildung
 ~\ref{fig:lotterie} dargestellt.
 
@@ -199,7 +201,7 @@ Somit muss die Hash-Eingabe in der Lotterie noch um den Hash des vorigen Blockes
     \label{fig:lotterie}
 \end{figure}
 
-Der Gewinner der Lotterie macht nun nicht einfach Einträge in ein Ledger, stattdessen schreibt er einen neuen Block in
+Der Gewinner der Lotterie macht nun nicht einfach Einträge in ein Ledger, er schreibt stattdessen einen neuen Block in
 die Blockchain, welche fortan als Ledger angesehen werden kann.
 
 \subsection{Stabilität}
@@ -213,18 +215,17 @@ die ständig miteinander kommunizieren, muss die Latenz bei der Übertragung von
 Nimmt man also ein weltweites Netzwerk, so kann es in der Verlosung der Schreibrechte passieren, dass in unterschiedlichen
 Teilen des Netzwerkes unterschiedliche Blöcke gefunden werden, die alle gültig sind.
 Grund hierfür sind Transaktionen, die nähere Knoten im Netzwerk eher erreichen, als weiter entfernte.
-Verteilte Teilnehmer im Netzwerk starten ihren Versuch in der Lotterie also mit unterschiedlichen Transaktionen.
+Weit entfernte Teilnehmer im Netzwerk starten ihren Versuch in der Lotterie also mit unterschiedlichen Transaktionen.
 Finden nun mehrere Teilnehmer im Netzwerk gleichzeitig gültige Blöcke, in denen unterschiedliche Transaktionen gehalten
 werden, bevor diese Transaktionen und die Blöcke von allen Teilnehmern akzeptiert oder gar empfangen wurden, so kommt es
 zu sogenannten \emph{Blockkollisionen}.
 Hier akzeptieren alle Teilnehmer jeweils den gültigen Block, dessen Transaktionen sie bereits kannten und der sie als erstes
 erreicht hat.
 Es kann also zu Zeitpunkten kommen, in denen verschiedene Blöcke in der Blockchain akzeptiert werden.
-Um nun ein Spalten der Blockchain zu vermeiden und einen allgemeinen Konsens herzustellen muss ein weiteres Konsens-
-Verfahren eingeführt werden.
+Um nun ein Spalten der Blockchain zu vermeiden und einen allgemeinen Konsens herzustellen, muss ein weiteres Konsens-Verfahren eingeführt werden.
 
 Im Falle von Bitcoin heißt dieser Konsens \emph{Nakamoto-Konsens}.
-Dieser besagt, dass die Blockchain mit dem höchsten Arbeitsaufwand, \emph{Proof of Work}, akzeptiert wird.
+Dieser besagt, dass die Blockchain mit dem höchsten Arbeitsaufwand - \emph{Proof of Work} - akzeptiert wird.
 Findet somit ein Teilnehmer einen weiteren Block und teilt ihn an alle anderen Teilnehmer mit, bevor jemand anderes einen
 Block findet, so wird dessen darunterliegende Blockchain als neue Grundlage akzeptiert, da in diese am meisten Aufwand
 geflossen ist.
@@ -232,7 +233,7 @@ Alle anderen Blöcke werden verworfen.
 Abbildung~\ref{fig:kollision} zeigt diesen Ablauf beispielhaft.
 Hier kollidieren die Blöcke \emph{B} und \emph{C}, wobei Block \emph{D} Block \emph{C} zuerst bestätigt.
 Block \emph{B} wird nun verworfen.
-Verworfene Transaktionen gehen allerdings nicht verloren, sie werden in einem späteren Block neu aufgenommen und solange
+Verworfene Transaktionen gehen allerdings nicht verloren, sie werden in einem späteren Block neu aufgenommen und bis dahin
 mit neuen Transaktionen im sogenannten \emph{Transaktionspool} gehalten, den alle Nutzer bei sich halten.
 
 \begin{figure}
@@ -242,18 +243,18 @@ mit neuen Transaktionen im sogenannten \emph{Transaktionspool} gehalten, den all
     \label{fig:kollision}
 \end{figure}
 
-Es wurde nun ein Protokoll geschaffen, welches ein dezentrales Ledger durch eine Blockchain realisiert, die jeder Nutzer
+Es wurde nun ein Protokoll geschaffen, welches ein \emph{dezentrales Ledger} durch eine \emph{Blockchain} realisiert, die jeder Nutzer
 der Währung halten und verifizieren kann.
-Alle Teilnehmer des Netzwerks sind gleichberechtigt und dürfen somit alle neue Blöcke schreiben, Voraussetzung für eine
-Schreibberechtigung ist jedoch das finden einer gültigen Zufallszahl, \emph{Nonce}, welche, sobald sie gefunden wurde
-als Arbeitsnachweis, \emph{Proof of Work}, von allen Teilnehmer akzeptiert wird.
+Alle Teilnehmer des Netzwerks sind gleichberechtigt und dürfen somit neue Blöcke schreiben, Voraussetzung für eine
+Schreibberechtigung ist jedoch das Finden einer gültigen Zufallszahl - der \emph{Nonce}, welche, sobald sie gefunden wurde,
+als Arbeitsnachweis - \emph{Proof of Work} - von allen Teilnehmer akzeptiert wird.
 Die Kosten der Berechnung machen Manipulationsversuche unwirtschaftlich, da diese leicht erkannt und abgelehnt werden
 können.
 Für den Aufwand des Hashens wird der Schreiber mit der \emph{Coinbase-Transaktion} und Transaktionsgebühren belohnt.
 Die \emph{Coinbase-Transaktion} reguliert ebenfalls die Gesamtmenge der Währungseinheiten, da sie nach einer bestimmten
 Anzahl an geschriebenen Blöcken im Wert halbiert wird.
-Das verhinder eine Inflation der Währung.
-Sollten Blöcke durch die Größe des Netzwerks geschuldet kollidieren, so gilt die Blockchain mit dem höchsten Arbeitsaufwand
+Das verhindert eine Inflation der Währung.
+Sollten Blöcke, durch die Größe des Netzwerks geschuldet, kollidieren, so gilt die Blockchain mit dem höchsten Arbeitsaufwand
 als neue akzeptierte Blockchain.
 Alle anderen Blöcke werden verworfen, die Transaktionen werden in späteren Blöcken festgehalten.
 
