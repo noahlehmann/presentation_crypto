@@ -6,18 +6,18 @@ auf die Nutzung einer solchen Währung einzugehen.
 Grundsätzlich implementieren die meisten Kryptowährungen die grundlegenden Ideen des \emph{Web 3.0}, konkret folgende:
 
 \begin{itemize}
-    \item \textbf{Unabhängigkeit von zentralen Instanzen}
+    \item \textbf{Unabhängigkeit von zentralen Instanzen}:
     Kryptowährungen geben die Verantwortung der Währung den Nutzern, statt sie zentralen Instanzen anzuvertrauen und sich
-    Manipulationen durch diese und Angriffe auf diese auszusetzen.
-    \item \textbf{Kryptografische Absicherung}
+    Manipulationen durch diese und Angriffen auf diese auszusetzen.
+    \item \textbf{Kryptografische Absicherung}:
     Kryptowährungen basieren in keiner Form auf Vertrauen, sondern stets auf kryptografischer Absicherung und der quasi
     Unmöglichkeit, die Verfahren zu umgehen, um die Währung zu manipulieren.
-    \item \textbf{Privatsphäre}
-    Kryptowährungen verzichten in der regel auf Identifizierungen der Nutzer und verfolgen die Ansicht, dass die Nutzung
+    \item \textbf{Privatsphäre}:
+    Kryptowährungen verzichten in der Regel auf Identifizierungen der Nutzer und verfolgen die Ansicht, dass die Nutzung
     einer Währung unter die zu schützende Privatsphäre einzuordnen ist.
     Durch den Verzicht der Speicherung von sensiblen Daten machen sich Kryptowährungen auch nicht im Sinne der Privatsphäre
     der Nutzer angreifbar.
-    \item \textbf{Wertstabilität}
+    \item \textbf{Wertstabilität}:
     Durch eine kontrollierte Ausschüttung der Währungseinheiten und die Limitierung dieser entziehen sich Kryptowährungen
     von jeglicher Inflation, Deflation oder vergleichbaren Wertinstabilitäten.
     Sie sind somit langfristig planbar, zuverlässig und vor Wertmanipulation geschützt.
@@ -33,7 +33,7 @@ Hierfür wird erneut die Kryptowährung \emph{Bitcoin} als Beispiel verwendet.
 \label{subsec:wallets}
 
 Wie bereits angesprochen versuchen Kryptowährungen die Identifizierbarkeit aus der Währung zu entfernen.
-Primärer Fokus liegt hier bei der Eliminierung persönlicher Daten aus der Identifizierung des Nutzers.
+Primärer Fokus liegt hier bei der Eliminierung persönlicher Daten aus der eindeutigen Zuordnung des Nutzers.
 Die Herausforderung liegt also darin, eine Art Konto für eine Währung anzulegen, für das man sich nicht bei einer zentralen
 Bank identifizieren muss und das nicht von anderen Nutzern oder Angreifern manipuliert werden kann.
 
@@ -75,31 +75,31 @@ werden kann:
 \end{figure}
 
 \begin{enumerate}
-    \item Doppel-Hash des Public-Keys zur Verkleinerung dessen auf einen Wertebereich von 160 Bit
-    \item Kodierung des Hashes zu Base58
+    \item Doppel-Hash des Public-Keys zur Verkleinerung dessen auf einen Wertebereich von \num{160} Bit
+    \item Kodierung des Hashes zu \emph{Base58}
 \end{enumerate}
 
-Der Doppel-Hash in Schritt 1 ist in diesem konkreten Fall eine Vorsichtsmaßnahme, um die Wahrscheinlichkeit von
-Kollisionen weiter zu verhindern.
+Der Doppel-Hash in Schritt \num{1} ist in diesem konkreten Fall eine redundante Vorsichtsmaßnahme, um die Wahrscheinlichkeit von
+Kollisionen der Hashes weiter zu verringern.
 Das eigentliche Ziel des Hashes ist es, den Public-Key deutlich zu verkleinern, um die Nutzung der späteren Adresse
 zu vereinfachen.
-Auch Schritt 2 dient lediglich der einfacheren Nutzung, da Base58 ähnlich scheinende Zeichen aus dem Zeichensatz entfernt.
+Auch Schritt \num{2} dient lediglich der einfacheren Nutzung, da \emph{Base58} ähnlich scheinende Zeichen aus dem Zeichensatz entfernt.
 Somit sollen Verwechslungen vermieden werden.
 Im Grunde kann also der Public-Key zur Identifizierung eines Nutzers genutzt werden, in der Praxis wandelt man diesen
 zur einfacheren Nutzung allerdings etwas ab.
-Daraus resultiert die Adresse.
+Daraus resultieren die Wallet-Adressen.
 
-Wie bei asymmetrischen Verschlüsselungsverfahren gängig kann nun der Public-Key des Schlüsselpaars an alle Nutzer im Netzwerk
+Wie es bei asymmetrischen Verschlüsselungsverfahren gängig ist, kann nun der Public-Key des Schlüsselpaars an alle Nutzer im Netzwerk
 weitergegeben werden.
-Der Private-Key sollte dabei nie Preis gegeben werden.
+Der Private-Key sollte dabei nie preisgegeben werden.
 
 Führt man nun eine Transaktion aus, so signiert der Sender die Transaktion mit seinem Private-Key.
 Somit ist garantiert, dass die Transaktion definitiv vom entsprechenden Nutzer angestoßen wurde.
-Der Empfänger ubd alle anderen Teilnehmer im Netzwerk können diese Transaktion verifizieren, indem sie sie mit dem
+Der Empfänger und alle anderen Teilnehmer im Netzwerk können diese Transaktion verifizieren, indem sie sie mit dem
 Public-Key des Senders entschlüsseln.
-Der Inhalt einer Transaktion besteht somit nur aus zwei Adressen, der des Senders und der des Empfängers und des Betrages,
+Der Inhalt einer Transaktion besteht somit nur aus zwei Adressen - der des Senders und der des Empfängers - und dem Betrag,
 der transferiert werden soll.
-Somit die Datenmenge, die an alle Nutzer bekannt gegeben werden muss ebenfalls auf ein Minimum beschränkt.
+Somit ist die Datenmenge, die an alle Nutzer bekannt gegeben werden muss, ebenfalls auf ein Minimum beschränkt.
 Abbildung~\ref{fig:transaktion} zeigt diesen Ablauf schematisch.
 
 \begin{figure}
@@ -112,9 +112,9 @@ Abbildung~\ref{fig:transaktion} zeigt diesen Ablauf schematisch.
 \subsection{Arten von Wallets}
 
 Wie in Kapitel~\ref{subsec:wallets} beschrieben ist eine Wallet nichts anderes als ein Werkzeug, welches für einen Nutzer
-die Adressen, Schlüsselpaare und Transaktionsabläufe betreut. %todo besseres wort
+die Adressen, Schlüsselpaare und Transaktionsabläufe betreut.
 Dabei limitieren sich Wallets keineswegs auf die Nutzung für nur eine Kryptowährung, stattdessen können sie beliebig komplex
-ausfallen und verschiedene Kryptowährungen für einen Nutzer halten.
+ausfallen und verschiedene Kryptowährungen für einen Nutzer verwalten.
 Tabelle~\ref{tab:wallets} zeigt verschiedene Implementierungsarten von Wallets für Kryptowährungen.
 \begin{table}[]
     \begin{tabular}{@{}llll@{}}
@@ -139,9 +139,9 @@ Tabelle~\ref{tab:wallets} zeigt verschiedene Implementierungsarten von Wallets f
     \caption{Arten von Krypto-Wallets}
     \label{tab:wallets}
 \end{table}
-Wallets kann man grundsätzlich in zwei Arten unterscheiden, Cold-Wallets und Hot-Wallets.
+Wallets kann man grundsätzlich in zwei Arten unterscheiden, \emph{Cold-Wallets} und \emph{Hot-Wallets}.
 Man betrachtet Hot-Wallets im Allgemeinen als einfacher zu Nutzen und günstiger in der Anschaffung.
-Da sie jedoch, wie der Name impliziert, immer am Netzwerk hängen, machen Hot Wallets sich leicht angreifbar und sind
+Da sie jedoch, wie der Name impliziert, immer am Netzwerk hängen, machen Hot-Wallets sich leicht angreifbar und sind
 für die Nutzung mit großen Beträgen nicht zu empfehlen.
 
 Cold-Wallets hingegen sind oft komplizierter in der Nutzung und oftmals auch teuer in der Anschaffung, sind aber deutlich
@@ -152,7 +152,7 @@ physisch getrennt sind, nicht über das Netzwerk angreifbar.
 \subsection{Arten von Kryptowährungen}
 
 Da \emph{Bitcoin} allgemein als die erste funktionierende und tatsächlich implementierte Kryptowährung gilt unterteilt
-man den Begriff Kryptowährung allgemein in zwei Unterbereiche: \emph{Bitcoin} und \emph{Altcoin}.
+man den Begriff Kryptowährung in der Regel in zwei Unterbereiche: \emph{Bitcoin} und \emph{Altcoin}.
 Altcoin beschreibt alle Währungen außer \emph{Bitcoin} und wird selbst noch einmal in zwei Unterkategorien geteilt:\linebreak
 Bitcoin\hyph{}Abwandlungen und Kryptowährungen mit nativen Blockchains.
 Bitcoin\hyph{}Abwandlungen sind hierbei Währungen, welche lediglich Teile der Bitcoin Implementierung abgewandelt haben und deren
